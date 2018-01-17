@@ -1,5 +1,5 @@
 /**
- * @name      WishList.js
+ * @name      Queue.js
  * @author    Joseph Evans <joeevs196@hotmail.co.uk>
  * @version   0.0.1
  * @license   MIT-license
