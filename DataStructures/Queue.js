@@ -21,7 +21,7 @@
  *            a new one to the end of the list, hence the need for a queue
  */
 function Queue (len) {
-    this.index = 1;
+    this.index = 0;
     this.size = len;
     this.data = [];
 }
@@ -78,11 +78,11 @@ Queue.prototype.smartEnqueue = function (data) {
 /**
  * @public 
  * @function 
- * @name        size
+ * @name        getSize
  * @return      {Int}
  * @description the purpose of this function is to simply retrieve the length 
  *              of the current queue 
  */
-Queue.prototype.size = function () {
+Queue.prototype.getSize = function () {
     return this.index;
 };
