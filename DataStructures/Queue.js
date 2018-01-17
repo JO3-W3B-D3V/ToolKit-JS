@@ -70,12 +70,8 @@ Queue.prototype.smartEnqueue = function (data) {
  *              last person is the last to leave
  */
 Queue.prototype.dequeue = function () {
-    if (this.index > 0) {
-        this.index --;
-        return this.data.shift();
-    } else {
-        return null;
-    }
+    if (this.index > 0) { this.index --; return this.data.shift(); } 
+    else { return null; }
 };
 
 
