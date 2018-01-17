@@ -44,22 +44,6 @@ Queue.prototype.enqueue = function (data) {
 
 
 /**
- * @public 
- * @function 
- * @name        smartEnqueue
- * @param       {*} data    this is simply the data that you wish to add to 
- *                          your queue 
- * @description the purpose of this function is to include the ability to 
- *              dequeue something when the queue is full, unlike the simple
- *              enqueue function above
- */
-Queue.prototype.smartEnqueue = function (data) {
-    if (this.index < this.size) { this.enqueue(data); } 
-    else if (this.index == this.size) { this.dequeue(); this.enqueue(data);}
-};
-
-
-/**
  * @public
  * @function
  * @name        dequeue
@@ -72,6 +56,22 @@ Queue.prototype.smartEnqueue = function (data) {
 Queue.prototype.dequeue = function () {
     if (this.index > 0) { this.index --; return this.data.shift(); } 
     else { return null; }
+};
+
+
+/**
+ * @public 
+ * @function 
+ * @name        smartEnqueue
+ * @param       {*} data    this is simply the data that you wish to add to 
+ *                          your queue 
+ * @description the purpose of this function is to include the ability to 
+ *              dequeue something when the queue is full, unlike the simple
+ *              enqueue function above
+ */
+Queue.prototype.smartEnqueue = function (data) {
+    if (this.index < this.size) { this.enqueue(data); } 
+    else if (this.index == this.size) { this.dequeue(); this.enqueue(data); }
 };
 
 
