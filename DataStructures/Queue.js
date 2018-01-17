@@ -4,7 +4,7 @@
  * @version   0.0.1
  * @license   MIT-license
  * @copyright Joseph Evans 2018
- * @file      the purpose of this file is to simply implement a Queue datastructure.
+ * @file      the purpose of this file is to simply implement a Queue data structure.
  * @todo      add a bit more functionality. 
  */
 
@@ -13,6 +13,8 @@
  * @class
  * @constructor
  * @name      Queue
+ * @param     {Int} len this is simply the length of the queue that you'd like to 
+ *                      create
  * @classdesc the purpose of this class is to simply implement a queue data
  *            structure, this queue is specifically used with the recently viewed
  *            list, as we need the ability to remove the first item, then add
@@ -29,30 +31,45 @@ function Queue (len) {
  * @public
  * @function
  * @name        enqueue
- * @param       d      this is simply the data that you want to add to the
- *                     queue
+ * @param       {*} data this is simply the data that you want to add to the
+ *                       queue
  * @description the purpose of this function is to simply add data to the
- *              queue data structure
+ *              queue data structure, this is a simple enqueue example
  */
-Queue.prototype.enqueue = function (d) {
+Queue.prototype.enqueue = function (data) {
+    if (this.index >= this.size) { return; }
+    this.data.push(data);
+    this.index ++;
+};
+
+
+/**
+ * @public 
+ * @function 
+ * @name        smartEnqueue
+ * @param       {*} data    this is simply the data that you wish to add to 
+ *                          your queue 
+ * @description the purpose of this function is to include the ability to 
+ *              dequeue something when the queue is full, unlike the simple
+ *              enqueue function above
+ */
+Queue.prototype.smartEnqueue = function (data) {
     if (this.index < this.size) {
-        this.data.push(d);
+        this.data.push(data);
          this.index ++;
     } else if (this.index == this.size) {
         var first = this.dequeue();
-        this.data.push(d);
+        this.data.push(data);
         this.index ++;
-    } else {
-        return;
     }
-}
+};
 
 
 /**
  * @public
  * @function
  * @name        dequeue
- * @return      {Null || *}
+ * @return      {*}
  * @description the purpose of this function is to simply remove the first
  *              element form the queue, like a queue in real life, it's the
  *              first person that leaves the queue first, and the
@@ -64,4 +81,17 @@ Queue.prototype.dequeue = function () {
     } else {
         return null;
     }
-}
+};
+
+
+/**
+ * @public 
+ * @function 
+ * @name        size
+ * @return      {Int}
+ * @description the purpose of this function is to simply retrieve the length 
+ *              of the current queue 
+ */
+Queue.prototype.size = function () {
+    return this.index;
+};
