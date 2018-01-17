@@ -54,14 +54,8 @@ Queue.prototype.enqueue = function (data) {
  *              enqueue function above
  */
 Queue.prototype.smartEnqueue = function (data) {
-    if (this.index < this.size) {
-        this.data.push(data);
-         this.index ++;
-    } else if (this.index == this.size) {
-        var first = this.dequeue();
-        this.data.push(data);
-        this.index ++;
-    }
+    if (this.index < this.size) { this.enqueue(data); } 
+    else if (this.index == this.size) { this.dequeue(); this.enqueue(data);}
 };
 
 
@@ -77,6 +71,7 @@ Queue.prototype.smartEnqueue = function (data) {
  */
 Queue.prototype.dequeue = function () {
     if (this.index > 0) {
+        this.index --;
         return this.data.shift();
     } else {
         return null;
