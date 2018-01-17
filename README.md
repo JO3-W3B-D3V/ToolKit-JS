@@ -8,7 +8,3 @@ As a web developer, I will try to utilise technologies and techniques that works
 
 ### So what’s included?
 The plan is to include generic data structures, a bunch of neat global functions, animation, XHR functionality, etc, you name it. Again, as it says above, I plan on implementing all of the functionality to the point where it runs solidly on IE9+. I should also mention that I plan to include a couple of additional features which are partially open to change, such as a wish list implementation and a recently view implementation. 
-
-You can use the [editor on GitHub](https://github.com/Argonaxe/ToolKit-JS/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
