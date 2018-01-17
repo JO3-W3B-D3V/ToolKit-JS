@@ -1,3 +1,9 @@
+# Don't Download Yet!
+This project is far from finished yet, once it's somewhat ready to be downloaded, feel free to downlaod it. 
+
+<br>
+<hr>
+
 ## What is ToolKit-JS?
 Simple, ToolKit-JS is simply as the name would suggest, a toolkit for the front end web language JavaScript. I, Joseph Evans am writing this to allow developers to use and learn how to write lightweight vanilla JavaScript, as I know many front end web developers that don't just **use** jQuery, but they **rely** on it. I've even heard a couple of horror stories where a front end developer may not know what the difference is between the two. I'm not saying I will replace jQuery, that's not my goal, nor is it the purpose of ToolKit-JS, the **main** purpose of ToolKit-JS is to add a bunch of neat features to your web application. Whether it's expanding on the barebones of JS, by adding functions to what's already there, or creating and implementing data structures, all done in vanilla JavaScript. 
 
