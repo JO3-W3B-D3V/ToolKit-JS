@@ -45,7 +45,7 @@ function ToolKit () {
  * @description the purpose of this function is to accept some input, then 
  *              test if it's currently in the usesr's view, even if it's just 
  *              partial, it doesn't have to be dead centre
- */
+ */ 
 ToolKit.prototype.inView = function (obj) {
     var elm = obj.getBoundingClientRect();
     return elm.top <= window.innerHeight && elm.bottom >= 0;
