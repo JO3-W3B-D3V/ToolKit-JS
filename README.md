@@ -45,11 +45,11 @@ With version 0.0.2, I plan on making this more the beta rather than an official 
 
 # Progress So Far
 - Data Structures: 50%
--- Stack: 100%
--- Queue: 100%
--- Tree: 60%
--- Graph: 0%
--- Additional(s)/Hybrids: 0%
+  - Stack: 100%
+  - Queue: 100%
+  - Tree: 60%
+  - Graph: 0%
+  - Additional(s)/Hybrids: 0%
 - XHR: 0%
 - Global Functions: 45%
 - Animation: 0%
