@@ -1,6 +1,6 @@
 /**
  * @name      Queue.js
- * @author    Joseph Evans <joeevs196@hotmail.co.uk>
+ * @author    Joseph Evans <joe-evs196@hotmail.co.uk>
  * @version   0.0.1
  * @license   MIT-license
  * @copyright Joseph Evans 2018
@@ -37,7 +37,7 @@ function Queue (len) {
  *              queue data structure, this is a simple enqueue example
  */
 Queue.prototype.enqueue = function (data) {
-    if (this.index >= this.size) { return; }
+    if (this.index == this.size) { return; }
     this.data.push(data);
     this.index ++;
 };
