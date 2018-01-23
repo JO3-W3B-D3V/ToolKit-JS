@@ -4,8 +4,9 @@
  * @version   0.0.1
  * @license   MIT-license
  * @copyright Joseph Evans 2018
- * @file      the purpose of this file is to simply implement a Stack data structure.
- * @todo      add more felexibility
+ * @file      the purpose of this file is to simply implement a Stack data
+ *            structure. 
+ * @todo      add more flexibility
  */
 
 
@@ -14,8 +15,8 @@
  * @class
  * @constructor
  * @name      Stack
- * @param     {Int} len this is simply the length of the stack that you'd like to 
- *                      create
+ * @param     {Int} len this is simply the length of the stack that you'd like  
+ *                      to create
  * @classdesc the purpose of this class is to simply implement a stack data
  *            structure, this stack is specifically used with the recently viewed
  *            list, as we need the ability to remove the first item, then add
@@ -33,7 +34,8 @@ function Stack (len) {
  * @public 
  * @function 
  * @name        push
- * @param       {*} data this is simply the data that you wish to add to this stack
+ * @param       {*} data this is simply the data that you wish to add to this
+*                   stack 
  * @description the purpose of this function is to add data to the stack data 
  *              structure
  */
@@ -59,10 +61,11 @@ Stack.prototype.pop = function () {
  * @public 
  * @function 
  * @name        push
- * @param       {*} data this is simply the data that you wish to add to this stack
+ * @param       {*} data this is simply the data that you wish to add to this 
+ *                  stack
  * @description the purpose of this function is to add data to the stack data 
- *              structure, but unlike the normal push function, this has the ability
- *              to remove data when the stack is full
+ *              structure, but unlike the normal push function, this has the 
+ *              ability to remove data when the stack is full
  */
 Stack.prototype.smartPush = function(data) {
     if (this.index < this.size) { this.push(data); }
@@ -71,7 +74,11 @@ Stack.prototype.smartPush = function(data) {
 
 
 /**
- * 
+ * @public 
+ * @function
+ * @name        getSize
+ * @return      {Int}
+ * @description the purpose of this function is to return the size of the stack 
  */
 Stack.prototype.getSize = function () {
     return this.index;
