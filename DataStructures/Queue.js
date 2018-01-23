@@ -5,7 +5,7 @@
  * @license   MIT-license
  * @copyright Joseph Evans 2018
  * @file      the purpose of this file is to simply implement a Queue data structure.
- * @todo      add more felexibility
+ * @todo      add more flexibility
  */
 
 /**
