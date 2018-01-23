@@ -6,14 +6,14 @@
  * @copyright Joseph Evans 2018
  * @file      the purpose of this file is to allow users to store
  *            data about things that they've recently searched and what
- *            they've favourited, this data can then be rendered elsewhere
+ *            they've favorite-ed, this data can then be rendered elsewhere
  *            thanks to using local storage, this allows for real time 
  *            updates on the view, there you could have a function that
  *            detects changes in the local storage, you could run that
- *            function every x amoutn of seconds to scan and update the
+ *            function every x amount of seconds to scan and update the
  *            results on the view page, an implementation like this may 
  *            be useful when the user has multiple tabs open, one page 
- *            where they can view the curernt state of the wishlist
+ *            where they can view the current state of the wishlist
  *            then another page where they can add data to the wishlist
  * @requires  GlobalFunctions.js
  * @requires  Queue.js
@@ -46,7 +46,7 @@ function WishList (len, name, structure) {
 	// viewed list, you may want a queue, as you can add data to it 
 	// and move data out of it using the smartenqueue function I've built
 	// otherwise, with a pretty standard wishlist, you'd probably use a 
-	// very basic stack, as you don't want to unadd data without the user 
+	// very basic stack, as you don't want to un-add data without the user 
 	// manually doing so 
 	if (structure != true) { this.struct = new Stack(this.size); } 
 	else { this.struct = new Queue(this.size); this.isStack = false; }
@@ -149,7 +149,7 @@ WishList.prototype.addData = function (data) {
  * @public
  * @function 
  * @name        remove
- * @description the prupose of this function is to remove the current item 
+ * @description the purpose of this function is to remove the current item 
  *              from the local storage
  */
 WishList.prototype.remove = function () { localStorage.removeItem(this.name); };
