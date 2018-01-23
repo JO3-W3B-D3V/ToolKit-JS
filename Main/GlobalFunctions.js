@@ -11,7 +11,7 @@
  *            possibly a better idea to do it like this, just to save dev time, i.e.
  *            I personally find it annoying using jQuery, to use something exclusive to 
  *            jQuery, you have to do $(something) or jQuery(something), so I say just 
- *            assign highyl generic functions to the global name space, BUT with that said
+ *            assign highly generic functions to the global name space, BUT with that said
  *            some bugs or errors COULD occur if function/variable names clash at all
  */
 
@@ -42,8 +42,8 @@ window.log = function (args) {
  * @param       {String}   eventType this is the event which you wish to 
  *                                   fire the callback function on 
  * @param       {Function} callback  this is the function you wish to run 
- *                                   once a certain event has occured
- * @description the prupose of this function is to add an event 
+ *                                   once a certain event has occurred
+ * @description the purpose of this function is to add an event 
  *              handler to some object, whether it's the document 
  *              or just some dom object
  */
@@ -103,10 +103,10 @@ window.ready = function (callback) {
 /**
  * @global
  * @function
- * @name        isDefined
- * @param       {*}      obj this is the variable that you want to check 
- *                          if it's defiend or not
- * @return      {Boolean}
+ * @name        isDefined 
+ * @param       {*}       obj this is the variable that you want to check 
+ *                        if it's defined or not
+ * @return      {Boolean} 
  * @description the purpose of this function is to see whether or not 
  *              a given variable is defined or not
  */
@@ -119,8 +119,8 @@ window.isDefined = function (obj) {
  * @global
  * @function
  * @name        isDOM
- * @param       {*}      obj this is the data that you want to 
- *                           test against
+ * @param       {*}       obj this is the data that you want to 
+ *                        test against
  * @return      {Boolean}
  * @description the purpose of this function is to test if 
  *              the given variable is a html element or not 
@@ -142,8 +142,8 @@ window.isDOM = function (obj) {
  * @global
  * @function
  * @name        isList
- * @param       {*}      obj this is the variable that you want to check 
- *                           whether it's a list or not
+ * @param       {*}       obj this is the variable that you want to check 
+ *                        whether it's a list or not
  * @return      {Boolean}
  * @description the purpose of this function is to check if the given 
  *              variable is a list or not
@@ -164,7 +164,8 @@ window.isList = function (obj) {
  * @name        isIE
  * @return      {Boolean}
  * @description the purpose of this function is to do a basic test as to whether 
- *              or not the user is using IE or not, because we all know how annyoing 
+ *              or not the user is using IE or not, because we all know how 
+ *              annoying 
  *              IE can be
  */
 window.isIE = function () {
@@ -179,7 +180,7 @@ window.isIE = function () {
  * @function
  * @name        byID
  * @param       {String} ID this is the id of the element that you're 
- *                          trying to target
+ *                       trying to target
  * @return      {Object}
  * @description the purpose of this function is to save typing the full 
  *              "document.getElementById"
@@ -191,7 +192,7 @@ window.byID = function (ID) { return document.getElementById(ID); };
  * @global
  * @function
  * @name        byTag
- * @param       {String}        tag this is the tag that you're lookign for 
+ * @param       {String}        tag this is the tag that you're looking for 
  * @return      {HTMLCollection}
  * @description the purpose of this function is to save typing the full 
  *              "document.getElementByTagName"
@@ -203,9 +204,9 @@ window.byTag = function(tag) { return document.getElementsByTagName(tag); };
  * @global
  * @function
  * @name        byClass
- * @param       {String}       className this is the class that you're
- *                                       searching for
- * @return      {HTMLCollection}
+ * @param       {String}         className this is the class that you're
+ *                               searching for
+ * @return      {HTMLCollection} 
  * @description the purpose of this function is to get all elements in the dom 
  *              that have the given class name
  */
@@ -218,9 +219,9 @@ window.byClass = function (className) {
  * @global
  * @function
  * @name        getType
- * @param       {*}     obj this is the variable that you want to get the data 
- *                          type of
- * @return      {String}
+ * @param       {*}      obj this is the variable that you want to get the data 
+ *                       type of
+ * @return      {String} 
  * @description the purpose of this function is to discover what data type 
  *              the given variable is
  */
@@ -237,7 +238,7 @@ window.getType = function (obj) { return typeof obj; };
  *                            given variable against
  * @return      {Boolean}
  * @description the purpose of this function is to discover 
- *              if the given variable maches the given type
+ *              if the given variable matches the given type
  */
 window.isType = function (obj, type) { 
     if (typeof obj === type) { return true; } else { return false; }
@@ -265,8 +266,8 @@ if (!String.prototype.trim) {
  * @param       {*}       item this is the item that you're 
  *                             searching for
  * @return      {Boolean} 
- * @description the prupose of this function is to test if 
- *              the given array contains teh given item
+ * @description the purpose of this function is to test if 
+ *              the given array contains the given item
  */
 Array.prototype.contains = function (item) {
     if (this.indexOf(item) > -1) { return true; } else { return false; } 
@@ -280,7 +281,7 @@ Array.prototype.contains = function (item) {
  * @param       {*}    item this is the item that you want to 
  *                          remove
  * @return      {Array}
- * @description the purpose of this funciton is to remove 
+ * @description the purpose of this function is to remove 
  *              one element from the array 
  */
 Array.prototype.remove = function (item) { 
@@ -294,7 +295,7 @@ Array.prototype.remove = function (item) {
  * @function
  * @name         empty
  * @return      {Array}
- * @description the prupose of this function is to empty an array
+ * @description the purpose of this function is to empty an array
  */
 Array.prototype.empty = function() {
     for (var i = 0, s = this.length; i < s; i++) { this.pop(); }
@@ -329,7 +330,7 @@ Array.prototype.removeAll = function(item) {
  * @function
  * @name        parent
  * @return      {Object}
- * @description the purpose fo this function is to find the given 
+ * @description the purpose of this function is to find the given 
  *              html elements parent 
  */
 Element.prototype.parent = function () {
@@ -369,7 +370,7 @@ Element.prototype.addClass = function (className) {
  * @global
  * @function
  * @name        removeClass
- * @param       {String} className this is the class taht you want to remove
+ * @param       {String} className this is the class that you want to remove
  * @description the purpose of this function is to remove a class
  *              from a given html element
  */
@@ -385,8 +386,8 @@ Element.prototype.removeClass = function (className) {
  * @name        hasClass
  * @param       {String} className this is the class that you want to look for
  * @return      {Boolean}
- * @description the purpose of this funciton is to discover if the given 
- *              html element has teh given class
+ * @description the purpose of this function is to discover if the given 
+ *              html element has the given class
  */
 Element.prototype.hasClass = function (className) {
     try { return this.classList.contains(className); }
@@ -400,7 +401,7 @@ Element.prototype.hasClass = function (className) {
  * @name        toggleClass
  * @param       {String} className this is the class that you want to 
  *                                 toggle
- * @description the purpose of this funciton is to simply switch 
+ * @description the purpose of this function is to simply switch 
  *              the given element class, if it has it, then remove, 
  *              if not, then add it to the given element
  */
@@ -421,7 +422,7 @@ Element.prototype.toggleClass = function (className) {
  *                                        searching for
  * @return      {HTMLCollection}
  * @description the purpose of this function is to find all 
- *              elements that can be foudn within the given html 
+ *              elements that can be found within the given html 
  *              element
  */
 Element.prototype.byClass = function (className) {
@@ -435,7 +436,7 @@ Element.prototype.byClass = function (className) {
  * @name        find
  * @param       {String}         query this is the query string 
  * @return      {HTMLCollection}
- * @description the prupose of this function is to find 
+ * @description the purpose of this function is to find 
  *              certain html elements that match a query string that 
  *              can be found within the given html element
  */
