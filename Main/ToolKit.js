@@ -43,8 +43,8 @@ function ToolKit () {
  *                           if it's currently in the users view
  * @return      {Boolean}
  * @description the purpose of this function is to accept some input, then 
- *              test if it's currently in the usesr's view, even if it's just 
- *              partial, it doesn't have to be dead centre
+ *              test if it's currently in the user's view, even if it's just 
+ *              partial, it doesn't have to be dead center
  */
 ToolKit.prototype.inView = function (obj) {
     var elm = obj.getBoundingClientRect();
@@ -124,7 +124,7 @@ ToolKit.prototype.isInternal = function () {
  * @function 
  * @name        isMobile
  * @return      {Boolean}
- * @description the prupose of this function is to test whether or not the
+ * @description the purpose of this function is to test whether or not the
  *              current device is a mobile device or not
  */
 ToolKit.prototype.isMobile = function () {
@@ -150,7 +150,7 @@ ToolKit.prototype.isMobile = function () {
  *                                  expect to get back from 
  *                                  the provided function
  * @return      {Object}
- * @description the prupose of this function is to allow for some 
+ * @description the purpose of this function is to allow for some 
  *              basic unit testing
  */
 ToolKit.prototype.unitTest = function (input, tempFunc, expected) {
@@ -235,7 +235,7 @@ ToolKit.prototype.unitTest = function (input, tempFunc, expected) {
 /**
  * @todo        implement a more elegant solution for some form 
  *              of js garbage collection
- * @description the prupose of this function is to simply TRY to support the
+ * @description the purpose of this function is to simply TRY to support the
  *              browser with memory management, as you can't formally do this, 
  *              I feel that this is the next best thing.
  */
