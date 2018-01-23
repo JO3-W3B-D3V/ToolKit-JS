@@ -6,7 +6,7 @@
  * @copyright Joseph Evans 2018
  * @file      the purpose of this file is to simply implement a Tree data
  *            structure
- * @todo      add more flexebility
+ * @todo      add more flexibility
  * @todo      add a balancing feature, at the moment this is an unbalanced
  *            tree
  */
@@ -63,7 +63,7 @@ Tree.prototype.isEmpty = function () {
  * @name        push 
  * @param       {Int} value this is the value that you wish to add to the
  *                     tree data structure
- * @description the prupose of this function is to simply add data to the
+ * @description the purpose of this function is to simply add data to the
  *              structure
  */
 Tree.prototype.push = function (value) {
@@ -115,7 +115,7 @@ Tree.prototype.push = function (value) {
  *                             no input is given, by default it will go
  *                             LTR 
  * @return      {Array}
- * @description the prupose of this funciton is to allow for the ability to 
+ * @description the purpose of this function is to allow for the ability to 
  *              implement the breadth first search, in the different orders 
  *              too, LTR & RTL
  */
@@ -158,7 +158,7 @@ Tree.prototype.bfs = function (node, order) {
  * @name        dfs
  * @param       {Node} node    the node of which you wish to start the 
  *                             search from 
- * @param       {String} order the prupose of this param is to allow 
+ * @param       {String} order the purpose of this param is to allow 
  *                             for a different searching order
  * @return      {Array}
  * @description the purpose of this function is to simply implement
@@ -167,7 +167,7 @@ Tree.prototype.dfs = function (node, order) {
     if (this.isEmpty()) { return; }
     var results = [];
     
-    // initial value of the recurseive function
+    // initial value of the recursive function
     var recurse = function (node) {
         results.push(node.value);
         node.left && recurse(node.left);
@@ -175,7 +175,8 @@ Tree.prototype.dfs = function (node, order) {
     };
 	
 	if (isDefined(order)) {
-		// if order is meant to be in order, then reassign the recursive function
+		// if order is meant to be in order, then reassign the recursive 
+		// function
 		if (order.toUpperCase() == 'IN') {
 			var recurse = function () {
 				node.left && recurse(node.left);
@@ -184,7 +185,8 @@ Tree.prototype.dfs = function (node, order) {
 			};
 		} 
 		
-		// if order is meant to be post order, then reassign the recursive function
+		// if order is meant to be post order, then reassign the recursive 
+		// function
 		else if (order.toUpperCase() == 'POST') {
 			var recurse = function () {
 				node.left && recurse(node.left);
