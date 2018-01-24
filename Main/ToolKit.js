@@ -2,14 +2,18 @@
  * @file 
  * @name        ToolKit.js
  * @author      Joseph Evans <joe-evs196@hotmail.co.uk>
- * @version     0.0.1
+ * @version     0.0.2
  * @requires    GlobalFunctions.js
  * @license     MIT-License
  * @copyright   Joseph Evans 2018
  * @description the purpose of this file is to allow for 
  *              some pretty useful developer tools, however 
  *              this file does rely on other files that have been 
- *              published in this project
+ *              published in this project, version 0.0.2 has begun now, 
+ *              which means that you should see added features and functions 
+ *              to the file, keep note that all changes will be noted, 
+ *              if you scroll to the bottom of the file, you'll see 2 functions 
+ *              using the '@since'.
  * @requires    GlobalFunctions.js
  * @todo        add documentation
  * @todo        carry out detailed testing 
@@ -91,6 +95,8 @@ ToolKit.prototype.lazyLoad = function () {
 	
     addEventHandler(document, "scroll", recurse);
 	
+	// IE has issues using the above event handler
+	// so this is the back up solution, purely for IE
 	if(isIE()) {
 		ready(recurse);
 	}
@@ -233,6 +239,10 @@ ToolKit.prototype.unitTest = function (input, tempFunc, expected) {
 
 
 /**
+ * @public 
+ * @function 
+ * @name        garbage
+ * @return      {Undefined}
  * @todo        implement a more elegant solution for some form 
  *              of js garbage collection
  * @description the purpose of this function is to simply TRY to support the
@@ -240,3 +250,45 @@ ToolKit.prototype.unitTest = function (input, tempFunc, expected) {
  *              I feel that this is the next best thing.
  */
 ToolKit.prototype.garbage = function () { return undefined; };
+
+
+/**
+ * @public 
+ * @function 
+ * @name 
+ * @param       {Object} obj this van be any input, as the function will just 
+ *                           state whether or not the provided input is a 
+ *                           number or not  
+ * @return      {Boolean}
+ * @todo        test & debug
+ * @description the purpose of this function is to decide whether or not the 
+ *              provided param is a numeric value or not 
+ * @since       0.0.2
+ */
+ ToolKit.prototype.isNum = function (obj) {
+	if (!isNaN(obj)) { return true; }
+	else { return false; }
+ };
+ 
+
+/**
+ * @public 
+ * @function 
+ * @name 
+ * @return      {Console.log}
+ * @todo        test & debug
+ * @description the purpose of this function is simple, it gets the amount of 
+ *              KB that's occupied with local storage
+ * @since       0.0.2
+ */
+ ToolKit.prototype.storageSize = function () {
+	var total = 0;
+	
+	for (var x in localStorage) {
+		var len = ((localStorage[x].length + x.length) *2);
+		if (this.isNum(len)) { total += len; } else { break; }
+		log(x.substr(0, 50) + " = " + (len / 1024).toFixed(2) + " KB");
+	}
+	
+	log("Total = " + (total / 1024).toFixed(2) + " KB");
+ };
