@@ -31,7 +31,7 @@ I plan on including the following features in version 0.0.2:
 - Implement a graph data structure.
 - Implement a balancing algorithm for the tree, or create a red-black tree.
 - Add more developer tools.
-- Encapsulate all of the current functions (bar global functions.js) into one parent Object. Although this is up for debate, purely due to the fact that
+- Encapsulate all of the current functions (bar global functions.js) into one parent Object. 
 - Produce detailed documentation to download.
 - Publish documentation online.
 - Add more detail to documentation.
