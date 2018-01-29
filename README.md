@@ -38,7 +38,7 @@ I plan on including the following features in version 0.0.2:
 - Get more developers to contribute and expand on the code.
 - Begin to implement XHR functionality.
 - Begin to implement some basic and lightweight animations, nothing too heavy because we want this to be light on mobile devices.
-- Some tracking/analytics application, mostly about user device, location, etc. 
+- Some tracking/analytics application, mostly about user's device, location, etc. 
 
 With version 0.0.2, I plan on making this more the beta rather than an official release, maybe we’ll get it right 3rd time, after all, it is meant to be 3rd time lucky…. 
 
