@@ -39,6 +39,8 @@ I plan on including the following features in version 0.0.2:
 - Begin to implement XHR functionality.
 - Begin to implement some basic and lightweight animations, nothing too heavy because we want this to be light on mobile devices.
 - Some tracking/analytics application, mostly about user's device, location, etc. 
+- Implement DOM cache (considering local storage/session storage so it’s only run the once per visit).
+- Implement a basic web RCT functionality. 
 
 With version 0.0.2, I plan on making this more the beta rather than an official release, maybe we’ll get it right 3rd time, after all, it is meant to be 3rd time lucky…. 
 
@@ -48,16 +50,16 @@ With version 0.0.2, I plan on making this more the beta rather than an official 
 - Data Structures: 50%
  - Stack: 100%
  - Queue: 100%
- - Tree: 60%
- - Graph: 0%
+ - Tree: 80%
+ - Graph: 25%
  - Additional(s)/Hybrids: 0%
-- XHR: 0%
-- Global Functions: 45%
-- Animation: 0%
-- ToolKit: 25%
+- XHR: 25%
+- Global Functions: 55%
+- Animation: 10%
+- ToolKit: 30%
 
 Other details:
 - Encapsulation: 90%
-- Testing: 33.33%
+- Testing: 50%
 - Documentation: 75%
-- Minification: 0%
+- Minification: 10%
