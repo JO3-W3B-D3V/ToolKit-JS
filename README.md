@@ -1,3 +1,9 @@
+# Current State
+The current state of ToolKit-JS is somewhere between alpha and beta, it’s still far from complete and ready to be used, however, it is working to a very basic level with limited functionality. If you read below, you’ll see that I have plans for version 0.0.2 that have not yet been implemented. After some reviews, I’ve also decided to include even more functions and functionality into the ToolKit. Although, I must say, at this rate ToolKit-JS is slowly turning from a library to a small API. Feel free to explore the code, feel free to message me about anything, if you’d like to see features that aren’t included or mentioned, then by all means, message me.
+
+As you will see, I have not yet begun minification really, it’s still all in a very neat and tidy format. **However** once I’ve made the initial release, I will then compress it and release both, the developer’s version and the minified version. 
+
+
 # Version 0.0.1 
 So far, I've implemented the following: 
 - Lazy Loading Images
