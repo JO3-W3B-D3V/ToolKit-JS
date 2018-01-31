@@ -11,14 +11,7 @@
  *              done in this file, if you search this document for 
  *              "Info Here", you should be more than able to make sense of how
  *              to add you're own scripts to the dynamic script loader
- * @requires    GlobalFunctions.js
  * @requires    ToolKit.js
- * @requires    WishList.js
- * @requires    Queue.js
- * @requires    Stack.js
- * @requires    Tree.js
- * @todo        test reliability
- * @todo        ensure that the user is aware of this
  * @todo        carry out detailed testing 
  */
 
@@ -51,20 +44,20 @@ var ToolKitInit = function () {
     var tk = new ToolKit();
     tk.lazyLoad();
 	log("Internal Script?");
-	log(tk.isInternal());
+	log(tk.internal());
 	tk.urlstring = "testing";
-	if (tk.isInternal()) {
+	if (tk.internal()) {
 		log("INTERNAL SCRIPT!!!!");
-		log(tk.isInternal());
+		log(tk.internal());
 	} else {
-		var logdata = "To turn on 'isInternal()', type " + tk.urlstring;
+		var logdata = "To turn on 'internal()', type " + tk.urlstring;
 		logdata += " into the URL somewhere...";
 		log(logdata);
 	}
     var x = 1;
     log(isList(x));
     log(isDefined(x));
-    log(tk.isMobile());
+    log("Mobile: " +tk.isMobile());
     var arraytest = [1,1,1,1,1,1,8,4,3,2,43,1,323];
     log(arraytest.contains(1));
     log('\nArray Tests\n\n');
@@ -78,7 +71,7 @@ var ToolKitInit = function () {
 ///////////////////////////////////////////////////////////////////////////////
 
     log("\nQueue Test\n\n");
-    var q = new Queue(10);
+    var q = new tk.Queue(10);
     for (var i = 0; i < 10; i++) { q.enqueue(i); }
     log(q.data);
     for (var i = 10; i < 15; i++) { q.smartEnqueue(i); }
@@ -91,7 +84,7 @@ var ToolKitInit = function () {
 ///////////////////////////////////////////////////////////////////////////////
 
     log("\nStack Test\n\n");
-    var s = new Stack(10);
+    var s = new tk.Stack(10);
     for (var i = 0; i < 10; i++) { s.push(i); }
     log(s.data);
     for (var i = 10; i < 20; i++) { s.smartPush(i); }
@@ -104,8 +97,8 @@ var ToolKitInit = function () {
 ///////////////////////////////////////////////////////////////////////////////
 
 	log("\nWishList Test\n\n");
-	var wish = new WishList(10, "wishlist");
-	var recent = new WishList(10, "recentlyviewed", true);
+	var wish = new tk.WishList(10, "wishlist");
+	var recent = new tk.WishList(10, "recentlyviewed", true);
 	for (var i = 0; i < 20; i ++) { wish.addData({ id:i, x:'test'}); }
 	for (var i = 0; i < 20; i ++) { recent.addData({ id:i, x:'test'}); }
 	log("\nRecently Viewed Data\n\n");
@@ -121,13 +114,13 @@ var ToolKitInit = function () {
 	recent.deleteAtIndex(recent.getSize() - 1);
     log("\nRecently Viewed Data\n\n");
 	log(recent.getData());
-    recent = tk.garbage();
-    wish = tk.garbage();
+    //recent = tk.garbage(); version 0.0.1
+    //wish = tk.garbage(); version 0.0.1
 	
 ///////////////////////////////////////////////////////////////////////////////
 	
 	log("\nTree Test\n\n");
-	var tree = new Tree();
+	var tree = new tk.Tree();
 	for(var i = 0; i < 100; i++) {
 		var random = Math.floor(Math.random() * 100) + 1;
 		tree.push(random);
@@ -160,9 +153,50 @@ var ToolKitInit = function () {
     inputs = tk.garbage();
     temp = tk.garbage();
     expects = tk.garbage();
-
+	
+///////////////////////////////////////////////////////////////////////////////
+	
+	var storage = tk.storageSize();
+	log(storage);
+	log("As you can see, due to the fact that the local storage items weren't" +
+	 "\ndeleted, they're taking up some storage, thanks to version 0.0.2" + 
+	 "\n we're now able to remove the data from local storage! Hooray!" + 
+	 "\n\nREMEMBER!!!!!\n\nJust because the variable has been asigned to" +
+	 "the toolkit garbage function, it doesn't mean that the local storage is" +
+	 "\nclear.");
+	recent.remove();
+	wish.remove();
+	storage = tk.storageSize();
+	log(storage);
+	recent = tk.garbage();
+	wish = tk.garbage();
+	log(tk.isNum(123));
+	log(tk.isNum("abc"));
+	var loc = tk.getLocation( function(loc) { log(loc); } );
+	var timetest = function () {
+		var mx = 1000;
+		for (var i = 0; i < mx; i++) {
+			for (var j = 0; j < mx; j++) {
+				for (var k = 0; k < mx; k++) { /* dummy test */ }
+			}
+		}
+	}
+	tk.benchmark(timetest, "timetest");
+	loc = tk.garbage();
+	
 ///////////////////////////////////////////////////////////////////////////////
 
+	var q1 = new tk.Queue(20);
+	var q2 = new tk.Queue(10);
+	log(q1);
+	log(q2);
+	log(q1);
+	console.log(getBrowser());
+	console.log(getIEVersion());
+	console.log(getOS());
+	
+///////////////////////////////////////////////////////////////////////////////
+	
 	log("\n End of Testing! Yay!\n\n");
     tk = tk.garbage();
 };
@@ -190,12 +224,7 @@ var ToolKitInit = function () {
     // a list of scripts goes here
     // feel free to add your own js files to this array 
     var scripts = [
-        "Main/GlobalFunctions.js",
-        "Main/ToolKit.js",
-		"Main/WishList.js",
-        "DataStructures/Queue.js",
-        "DataStructures/Stack.js",
-		"DataStructures/Tree.js"
+        "Main/ToolKit.js"
     ];
 
     
