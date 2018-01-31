@@ -50,6 +50,17 @@ var ToolKitInit = function () {
     log("\nBasic Global Function Tests\n\n");
     var tk = new ToolKit();
     tk.lazyLoad();
+	log("Internal Script?");
+	log(tk.isInternal());
+	tk.urlstring = "testing";
+	if (tk.isInternal()) {
+		log("INTERNAL SCRIPT!!!!");
+		log(tk.isInternal());
+	} else {
+		var logdata = "To turn on 'isInternal()', type " + tk.urlstring;
+		logdata += " into the URL somewhere...";
+		log(logdata);
+	}
     var x = 1;
     log(isList(x));
     log(isDefined(x));
