@@ -117,8 +117,8 @@ ToolKit.prototype.lazyLoad = function () {
  *              load 
  */
 ToolKit.prototype.isInternal = function () {
-    if (!isDefined(PrivateObject.urlstring)) { return false; } 
-    if (window.location.href.indexOf(PrivateObject.urlstring) == -1) {
+    if (!isDefined(this.urlstring)) { return false; } 
+    if (window.location.href.indexOf(this.urlstring) == -1) {
         return false;
     } 
     else { return true; }
