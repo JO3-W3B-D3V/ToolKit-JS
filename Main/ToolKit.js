@@ -118,6 +118,7 @@ window.isDefined = function (obj) {
     else { return false; }
 };
 
+
 /**
  * @global
  * @function
@@ -587,8 +588,8 @@ window.getBrowser = function () {
  * @since       0.0.2
  */
 window.validEmail = function (email) {
-	var re = new RegExp('/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|' 
-	+ '(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(' 
+	var re = new RegExp('/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*' 
+	+ ')|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(' 
 	+ '([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/');
 	return re.test(email);
 };
@@ -641,6 +642,7 @@ window.getDateTime = function () {
 	
 	return dateTimeObject;
 };
+
 
 /**
  * @global
@@ -949,7 +951,6 @@ ToolKit.prototype.garbage = function () { return undefined; };
  * @public 
  * @function 
  * @name        clearStorage
- * @return      {Log}
  * @description the purpose of this function is simple, it clears the local
  *              storage
  * @since       0.0.2
