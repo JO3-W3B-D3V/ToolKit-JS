@@ -11,7 +11,7 @@
  *              published in this project, version 0.0.2 has begun now, 
  *              which means that you should see added features and functions 
  *              to the file, keep note that all changes will be noted, 
- *              if you scroll to the bottom of the file, you'll see 2 functions 
+ *              if you scroll to the bottom of the file, you'll see a few functions 
  *              using the '@since'.
  * @requires    GlobalFunctions.js
  * @todo        add documentation
