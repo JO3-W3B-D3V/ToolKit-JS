@@ -1798,6 +1798,17 @@ ToolKit.prototype.animation = function () {
  * @since       0.0.2
  */
 ToolKit.prototype.GET = function () {
+	var url = window.location.search;
+	var $_GET = [];
+
+	if (url.indexOf("&") > -1) {
+	    $_GET = url.split("&");
+	    $_GET[0] = $_GET[0].replace("?", "");
+	} else {
+	    $_GET[0] = url.substring((url.indexOf("?") + 1), url.length);
+	}
+
+	return $_GET;
 	
 };
 
