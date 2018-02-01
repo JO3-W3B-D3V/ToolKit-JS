@@ -1825,4 +1825,4 @@ ToolKit.prototype.GET = function () {
  */
  ToolKit.prototype.POST = function () {
 
-};
+}; // may remove this function
