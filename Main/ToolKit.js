@@ -578,6 +578,21 @@ window.getBrowser = function () {
 	} else { return { os: false, userAgent:userAgent }; }
 };
 
+
+/**
+ * @public 
+ * @function 
+ * @name        getDeviceDetails
+ * @return      {Object}
+ * @description the purpose of this function is to get all of the 
+ *              details about the user's device
+ */
+window.getDeviceDetails = function () {
+	try { return navigator; } 
+	catch (e) { return log(e); }
+};
+
+
 /**
  * @global
  * @function
