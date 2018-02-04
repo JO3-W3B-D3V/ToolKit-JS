@@ -726,7 +726,7 @@ ToolKit.prototype.lazyLoad = function () {
 
             // if all images have loaded, remove on scroll
             if (this.loadedImages >= this.toatlImages) {
-				console.log("remove event");
+				log("remove event");
                 removeEventHandler(document, "scroll", recurse);
 			}
         }
@@ -1859,6 +1859,161 @@ ToolKit.prototype.GET = function (args) {
  *              as an array
  * @since      0.0.2
  */
- ToolKit.prototype.POST = function () {
+ToolKit.prototype.POST = function () {
 
 }; // may remove this function
+
+
+/**
+ * @public
+ * @function 
+ * @name        Encryption
+ * @return      {Object}
+ * @description the purpose of this function is to help protect cookies from 
+ *              potential attacks
+ * @todo        make the implementation a lot more secure and complex
+ *              also add documentation to nested functions, in addition to 
+ *              generally tidying up the code as this is a rough draft 
+ * @since       0.0.2
+ */
+ToolKit.prototype.Encryption = function () {
+    var privateObject = {
+        runBefore : false,
+        key : null,
+        bins : null,
+
+        generateKey : function () {
+            var key = Math.floor(Math.random() * 32131897) + 4738;
+            this.key = key;
+        },
+
+        dataToBin : function (data) {
+            var clone = data.toString();
+            var bins = [];
+
+            for (var i = 0, s = clone.length; i < s; i ++) {
+                bins[i] = clone[i].charCodeAt(0).toString(2);
+            }
+
+            return bins;
+        },
+
+        decToHex : function (data) {
+            if (isNaN(data)) { return false; }
+            var symbolset = ["!",".","?","#","{","]",";","@","$","~"];
+            var rand = Math.floor(Math.random() * 6325) + 231;
+            var rand2 = Math.floor(Math.random() * 5435) + 438;
+            var rand3 = Math.floor(Math.random() * 10) + 1;
+            var rand4 = Math.floor(Math.random() * 10) + 1;
+            var randstr = symbolset[rand3 - 1];
+            var randstr2 = symbolset[rand4 - 1];
+            var scrambled = ("%"+ rand + randstr + data.toString(16) + randstr2 + rand2 + "%");
+            return scrambled;
+        },
+
+        binToDec : function (bin) {
+            return parseInt((bin + '').replace(/[^01]/gi, ''), 2);
+        },
+
+        scramble : function (data) {
+            if (isNaN(data)) { return false; }
+            var result = data + this.key;
+            return result;
+        },
+
+        clearnArray : function (array) {
+            for (var i = 0, s = array.length; i < s; i++) {
+                if (array[i] == "") { array.splice(i, 1); i--; }
+            }
+            return array;
+        },
+
+        unscramble : function (data) {
+            if (isNaN(data)) { return false; }
+            var result = data - this.key;
+            return result;
+        },
+
+        decToBin : function (data) {
+            return parseInt(data, 10).toString(2);
+        },
+
+        binToData : function (data) { // DOESN'T WORK
+            var bins = [];
+            var chars;
+
+            for (var i = 0, s = data.length; i < s; i++) {
+                chars += data[i];
+                if (i % 8 === 0 ) {
+                    bins.push(chars);
+                    chars = '';
+                }
+            }
+        }
+    };
+
+    var publicObject = {
+        encrypt : function(data, key) {
+            if (!privateObject.runBefore) {
+                if (isNaN(key)) { privateObject.generateKey(); }
+                else { privateObject.key = key; }
+                privateObject.runBefore = true;
+            }
+
+            if (typeof data !== "string") { return null; }
+            privateObject.bins = privateObject.dataToBin(data);
+            var dec = privateObject.binToDec(privateObject.bins);
+            var stored = [];
+            var hex = [];
+            var decString = dec.toString();
+            var str;
+
+            for (var i = 0, s = decString.length; i < s; i++) {
+                stored[i] = privateObject.scramble(parseInt(decString.charAt(i)));
+            }
+
+            for (var i = 0, s = stored.length; i < s; i++) {
+                hex[i] = privateObject.decToHex(stored[i]);
+                str += hex[i];
+            }
+
+            return {
+                array : hex,
+                string : str.replace("undefined","").replace(" ","")
+            };
+        },
+
+        decrypt : function (data, key) {
+            if (!isNaN(key)) { privateObject.key = key; }
+            if (typeof data !== "string") { return null; }
+            var array = privateObject.clearnArray(data.split("%"));
+            var chars = [];
+            var bins = privateObject.bins;
+            var str;
+
+            for (var i = 0, s = bins.length; i < s; i ++) {
+                if (typeof bins[i] !== "undefined") {
+                    if (bins[i].length < 8) {
+                        for (var j = 0, s = bins[i].length; j < s; j ++) {
+                            if (s) { break; }
+                            bins[i] = "0" + bin;
+                        }
+                    }
+
+                    chars.push(parseInt(bins[i], 2).toString(10));
+                }
+            }
+
+            for (var i = 0, s = chars.length; i < s; i++) {
+                var char = String.fromCharCode(chars[i]);
+                str += char;
+            }
+
+            str = str.replace("undefined","");
+
+            return str;
+        }
+    };
+
+    return publicObject;
+};
