@@ -675,6 +675,8 @@ function ToolKit () {
     this.mobile = this.isMobile();
     this.loadedImages = 0;
     this.toatlImages = 0;
+	if (!isDefined(ToolKit.singleton)) { ToolKit.singleton = this; }
+	else { return ToolKit.singleton; }
 }
 
 
