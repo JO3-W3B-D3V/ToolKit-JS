@@ -270,7 +270,8 @@ if (!String.prototype.trim) {
  * @name        equals
  * @param       {String}  str this is the string that you want to compare
  * @return      {Boolean}
- * @description the purpose of this function is to provide a trim function
+ * @description the purpose of this function is to see if two strings are the
+ *              the same while ignoring the case of the strings
  */
 String.prototype.equals = function (str) {
     if (typeof str !== "string") { return; }
@@ -2041,7 +2042,7 @@ ToolKit.prototype.Encryption = function () {
  * @function
  * @name        NAND
  * @param       {Boolean} var1 this is the first boolean you want to test
- * @param       {Boolean} var2 this is the second boolean you want to test 
+ * @param       {Boolean} var2 this is the second boolean you want to test
  * @return      {Boolean}
  * @description the purpose of this function is to basically implement a
  *              nand feature
@@ -2056,7 +2057,7 @@ ToolKit.prototype.NAND = function (var1, var2) { return !(var1 && var2); };
  * @function
  * @name        NOR
  * @param       {Boolean} var1 this is the first boolean you want to test
- * @param       {Boolean} var2 this is the second boolean you want to test 
+ * @param       {Boolean} var2 this is the second boolean you want to test
  * @return      {Boolean}
  * @description the purpose of this function is to basically implement a
  *              nor feature
@@ -2071,7 +2072,7 @@ ToolKit.prototype.NOR = function (var1, var2) { return !(var1 || var2); };
  * @function
  * @name        XOR
  * @param       {Boolean} var1 this is the first boolean you want to test
- * @param       {Boolean} var2 this is the second boolean you want to test 
+ * @param       {Boolean} var2 this is the second boolean you want to test
  * @return      {Boolean}
  * @description the purpose of this function is to basically implement a
  *              nor feature
