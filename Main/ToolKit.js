@@ -1868,14 +1868,14 @@ ToolKit.prototype.POST = function () {
 
 /**
  * @public
- * @function 
+ * @function
  * @name        Encryption
  * @return      {Object}
- * @description the purpose of this function is to help protect cookies from 
+ * @description the purpose of this function is to help protect cookies from
  *              potential attacks
  * @todo        make the implementation a lot more secure and complex
- *              also add documentation to nested functions, in addition to 
- *              generally tidying up the code as this is a rough draft 
+ *              also add documentation to nested functions, in addition to
+ *              generally tidying up the code as this is a rough draft
  * @since       0.0.2
  */
 ToolKit.prototype.Encryption = function () {
@@ -1940,7 +1940,7 @@ ToolKit.prototype.Encryption = function () {
             return parseInt(data, 10).toString(2);
         },
 
-        binToData : function (data) { // DOESN'T WORK
+        binToData : function (data) { // doesn't work as expected yet
             var bins = [];
             var chars;
 
@@ -2018,4 +2018,45 @@ ToolKit.prototype.Encryption = function () {
     };
 
     return publicObject;
+};
+
+
+/**
+ * @public
+ * @function
+ * @name        NAND
+ * @return      {Boolean}
+ * @description the purpose of this function is to basically implement a
+ *              nand feature
+ * @todo        actually test it
+ * @since       0.0.2
+ */
+ToolKit.prototype.NAND = function (var1, var2) { return !(var1 && var2); };
+
+
+/**
+ * @public
+ * @function
+ * @name        NOR
+ * @return      {Boolean}
+ * @description the purpose of this function is to basically implement a
+ *              nor feature
+ * @todo        actually test it
+ * @since       0.0.2
+ */
+ToolKit.prototype.NOR = function (var1, var2) { return !(var1 || var2); };
+
+
+/**
+ * @public
+ * @function
+ * @name        XOR
+ * @return      {Boolean}
+ * @description the purpose of this function is to basically implement a
+ *              xor feature
+ * @todo        actually test it
+ * @since       0.0.2
+ */
+ToolKit.prototype.XOR = function (var1, var2) {
+    return (var1 && !var2) || (!var1 && var2);
 };
