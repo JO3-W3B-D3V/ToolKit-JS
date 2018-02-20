@@ -13,9 +13,9 @@
  *              to the file, keep note that all changes will be noted,
  *              if you scroll to the bottom of the file, you'll see a few functions
  *              using the '@since'.
- * @requires    GlobalFunctions.js
  * @todo        add documentation
  * @todo        carry out detailed testing
+ * @todo        break components up into their own files for dev purposes 
  */
 
 
