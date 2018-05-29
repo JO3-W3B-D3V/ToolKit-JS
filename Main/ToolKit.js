@@ -50,6 +50,8 @@ window.makeTemplateObject = function (key) {
 		return console.log("Please provide a string.");
 	}
 	
+	if (key == null || key == "values") { key = "data"; }
+	
 	var obj = {};
 	
 	Object.defineProperty(obj, key, {
