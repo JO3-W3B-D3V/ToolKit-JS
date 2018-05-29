@@ -39,6 +39,34 @@ window.log = function (args) {
 /**
  * @global
  * @function
+ * @name        makeTemplateObject
+ * @param       {String}          key this is simply the key of the object that 
+ *                                you'd like to define  
+ * @description the purpose of this function is to simply generate a basic object 
+ *              with some basic properties already assigned such as a get ans set method 
+ */
+window.makeTemplateObject = function (key) {
+	if (typeof key != "string") {
+		return console.log("Please provide a string.");
+	}
+	
+	var obj = {};
+	
+	Object.defineProperty(obj, key, {
+		values: {},
+		enumerable: false,
+		configurable: false, 
+		get: function () { return this.values; },
+		set: function (data) { return this.values = data; }
+	});
+	
+	return obj;
+};
+
+
+/**
+ * @global
+ * @function
  * @name        addEventHandler
  * @param       {Object}   obj       this is the object you're trying
  *                                   to target
