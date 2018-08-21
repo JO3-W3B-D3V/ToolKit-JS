@@ -18,3 +18,19 @@ I simply binned it, I sure it's on git if you look through the commits, but most
 
 ### So what now? 
 From this moment on, I plan to continue development on ToolKitJS, I also plan to begin uploading content and features later today(_21/02018_).
+
+
+## So What's Included?
+Here's a list of features to expect: 
+
+- AJAX
+- Promises
+- Multi Threading
+- Template Engine 
+- Asynchronous Features
+- Utilities 
+  - Event Handler
+  - DOM Selector 
+  - etc.
+
+As you can see above, there's not a great deal of features included, _unlike version 1_, but the features that are included are pretty darn useful and powerful tools. You should take note that I've personally decided to drop support for IE9, if your target audience uses stone age technology, then I suggest you look through the half finished version 1 code and take what you like. I'm only dropping support for IE9 simply because it cannot handle features such as multi threading, there may be work around's, but as I aim to keep this library lightweight, I will not include such features.
