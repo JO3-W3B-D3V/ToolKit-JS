@@ -2,7 +2,7 @@
  *
  */
 
-ToolKit = ToolKit || {};
+var ToolKit = ToolKit || {};
 
 
 
