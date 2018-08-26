@@ -1,6 +1,6 @@
 /**
  * @author   Joseph Evans
- * @since
+ * @since     25/08/2018
  * @desc      A major purpose behind this code is to simply allow a developer
  *            to have a pretty useful ToolKit at hand, due to the modular design,
  *            you should be able to cut out bits and piecees that you like or
@@ -12,7 +12,24 @@
  *            that should instantly add support for IE9+.
  * @file      The purpose of the utils file is to essentially contain a bunch of
  *            general, yet useful functions and tools.
- * @copyright 2018
+ * @copyright (c) 2018 copyright holder all Rights Reserved.
+ *            Permission is hereby granted, free of charge, to any person obtaining a copy
+ *            of this software and associated documentation files (the "Software"), to deal
+ *            in the Software without restriction, including without limitation the rights
+ *            to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *            copies of the Software, and to permit persons to whom the Software is
+ *            furnished to do so, subject to the following conditions:
+ *
+ *            The above copyright notice and this permission notice shall be included in all
+ *            copies or substantial portions of the Software.
+ *
+ *            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *            IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *            FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *            AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *            LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *            SOFTWARE.
  * @todo      add documentation
  * @todo      general code tidy up
  * @todo      add some more features
@@ -37,9 +54,44 @@ ToolKit.GLOBALS = {
 };
 
 
+
 /**
- * @desc the purpose of this code is to allow you to test out some code with
- *       may try catch implementations around the code, if it works
+ * @public
+ * @function toggleDevMode
+ * @param    {Boolean} Boolean
+ * @desc     the purpose of this method is to allow a developer to set the
+ *           dev mode feature to true or false
+ */
+ToolKit.toggleDevMode = function (boolean) {
+  var devMode = ToolKit.GLOBALS.DEV_MODE;
+  if (typeof boolean == "boolean") {
+    devMode = boolean;
+  } else {
+    devMode =! devMode;
+  }
+};
+
+
+
+/**
+ * @public
+ * @function
+ * @return  {Boolean}
+ * @desc    the purpose of this method is to state whether or not the
+ *          dev mode feature is on or off, by default it is on
+ */
+ToolKit.isDevMode = function () {
+  return ToolKit.GLOBALS.DEV_MODE;
+};
+
+
+/**
+ * @public
+ * @function executeSafe
+ * @param    {Object} options
+ * @return   {Error||Null}
+ * @desc     the purpose of this code is to allow you to test out some code with
+ *           may try catch implementations around the code, if it works
  */
 ToolKit.executeSafe = function (options) {
   let errors = [], usererror = 0;
@@ -82,11 +134,22 @@ ToolKit.executeSafe = function (options) {
       }
     }
 
-    if (typeof recovery == "function") { recovery(errors); }
+    if (typeof recovery == "function") {
+      recovery(errors);
+    }
   }
 };
 
 
+
+/**
+ * @public
+ * @function cloneArray
+ * @param    {Array} array
+ * @return   {Array}
+ * @desc     the purpose of this method is to essentially allow a developer to
+ *           clone an array, regardless of what type or size
+ */
 ToolKit.cloneArray = function (array) {
   let success = null;
 
