@@ -226,3 +226,35 @@ ToolKit.Storage = function (argument) {
   ToolKit.Storage.instance = publicObject;
   return ToolKit.Storage.instance;
 };
+
+
+
+/**
+ * @public
+ * @function timeout
+ * @param    {Object} options
+ * @desc     the purpose of this method is to just simply add a wrapper
+ *           around the set time out method
+ */
+ToolKit.timeout = function (options) {
+  if (ToolKit.timeout.count == null) {
+    ToolKit.timeout.count = 0;
+  } else {
+    ToolKit.timeout.count ++;
+  }
+
+  var time = options.time || 0;
+  var name = options.name || ToolKit.timeout.count;
+  var timeouts = {};
+  var exe;
+
+  var publicObject = {
+    execute : function () {
+      timeouts[name] = setTimeout(function() {
+        options.code();
+      });
+    }, clear : function (name) {
+      clearTimeout(timeouts[name]);
+    }
+  };
+};
