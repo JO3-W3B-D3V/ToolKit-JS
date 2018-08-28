@@ -163,3 +163,66 @@ ToolKit.cloneArray = function (array) {
 
   return success;
 };
+
+
+
+/**
+ * @public
+ * @function Storage
+ * @param    {*}
+ * @return   {Storage}
+ * @desc     the purpose of this method is to simply allow the developer to
+ *           not have to do any form of implementation or any form of wrapper
+ *           around the storage facilities
+ */
+ToolKit.Storage = function (argument) {
+  if (ToolKit.Storage.instance != null) {
+    return ToolKit.Storage.instance;
+  }
+
+  var s;
+
+  if (argument != null) {
+    s = sessionStorage;
+  } else {
+    s = localStorage;
+  }
+
+  var validateKey = function (key) {
+    if (typeof key != "string") {
+      throw new Error("Invalid data type provided.");
+    } else if (key.length == null || key.length < 1) {
+      throw new Error("You must provide a string with a length of at least 1.");
+    }
+  };
+
+  var publicObject = {
+    get : function (key, value) {
+      validateKey(key);
+      var data = s.getItem(key);
+
+      if (typeof data == "string") {
+        try {
+          data = JSON.parse(data);
+        } catch (JSONParseException) {
+          // no need to do anything
+        }
+      }
+
+      return data;
+    },
+    set : function (key, value) {
+      try {
+        value = JSON.stringify(value);
+      } catch (JSONStringifyException) {
+        // no need to do anything
+      }
+
+      validateKey(key);
+      s.setItem(key, value);
+    }
+  };
+
+  ToolKit.Storage.instance = publicObject;
+  return ToolKit.Storage.instance;
+};
