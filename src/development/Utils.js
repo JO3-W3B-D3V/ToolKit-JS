@@ -170,7 +170,7 @@ ToolKit.cloneArray = function (array) {
  * @public
  * @function Storage
  * @param    {*}
- * @return   {Storage}
+ * @return   {Object}
  * @desc     the purpose of this method is to simply allow the developer to
  *           not have to do any form of implementation or any form of wrapper
  *           around the storage facilities
