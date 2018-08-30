@@ -90,6 +90,7 @@ ToolKit.$e = function (query) {
  *           that has been provided below, or include some form of polyfill if you
  *           need to use xpath for whatever reason.
  * @see      https://github.com/google/wicked-good-xpath/blob/master/dist/wgxpath.install.js
+ * @see      https://github.com/JO3-W3B-D3V/ToolKit-JS/blob/master/src/development/polyfills/XPath.js
  */
 ToolKit.xpath = function (options) {
   var elements = [];
