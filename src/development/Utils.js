@@ -93,10 +93,11 @@ ToolKit.xpath = function (options) {
   var xpath = options.path || options.xpath || options;
   var target = options.target || xml;
   var resolver = options.resolver;
-  var type = options.type || XPathResult.ANY_TYPE;
+  var type = options.type;
   var result = options.result;
 
   try {
+    type = type || XPathResult.ANY_TYPE; // placed here to prevent issues with IE
     var xpathnodes = xml.evaluate(xpath, target, resolver, type, result);
     var node = xpathnodes.iterateNext();
     while (node) {
