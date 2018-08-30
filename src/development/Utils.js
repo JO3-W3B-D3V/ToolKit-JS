@@ -85,7 +85,11 @@ ToolKit.$e = function (query) {
  *           they won't work with a query selector, or even better yet, it
  *           is useful for when an element or elements do not have any class(es)
  *           or attributes that can be used to target the elements, rendering
- *           the query selector useless.
+ *           the query selector useless. If you want to add support for IE, seeing as
+ *           no version of IE supports document.evaluate, then you can use the link
+ *           that has been provided below, or include some form of polyfill if you
+ *           need to use xpath for whatever reason.
+ * @see      https://github.com/google/wicked-good-xpath/blob/master/dist/wgxpath.install.js
  */
 ToolKit.xpath = function (options) {
   var elements = [];
@@ -97,7 +101,7 @@ ToolKit.xpath = function (options) {
   var result = options.result;
 
   try {
-    type = type || XPathResult.ANY_TYPE; // placed here to prevent issues with IE
+    type = type || XPathResult.ANY_TYPE; // IE error
     var xpathnodes = xml.evaluate(xpath, target, resolver, type, result);
     var node = xpathnodes.iterateNext();
     while (node) {
