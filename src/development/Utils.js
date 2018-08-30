@@ -57,8 +57,67 @@ ToolKit.GLOBALS = {
 
 /**
  * @public
+ * @function $e
+ * @param    {String} query
+ * @return   {Array[Element]}
+ * @desc     The purpose for this method is to allow a developer to
+ *           target DOM elements just like they would if they were using
+ *           jQuery.
+ */
+ToolKit.$e = function (query) {
+  try {
+    return Array.prototype.slice.call(document.querySelectorAll(query));
+  } catch (InvalidDOMQueryException) {
+    return [];
+  }
+};
+
+
+
+/**
+ * @public
+ * @function xpath
+ * @param    {Object} options
+ * @return   {Array[Element]}
+ * @desc     The purpose of this method is to allow a developer to target
+ *           DOM elements through using xpath rather than query selectors,
+ *           such a tool may be useful when elements have unusual id's where
+ *           they won't work with a query selector, or even better yet, it
+ *           is useful for when an element or elements do not have any class(es)
+ *           or attributes that can be used to target the elements, rendering
+ *           the query selector useless.
+ */
+ToolKit.xpath = function (options) {
+  var elements = [];
+  var xml = options.xml || document;
+  var xpath = options.path || options.xpath;
+  var target = options.target || xml;
+  var resolver = options.resolver;
+  var type = options.type || XPathResult.ANY_TYPE;
+  var result = options.result;
+
+  try {
+    var xpathnodes = xml.evaluate(xpath, target, resolver, type, result);
+    var node = xpathnodes.iterateNext();
+    while (node) {
+      elements.push(node);
+      node = xpathnodes.iterateNext();
+    }
+  } catch (UnkownException) {
+    /**
+     * @todo Consider building some form of debugger object?....
+     */
+  }
+
+  return elements;
+};
+
+
+
+/**
+ * @public
  * @function toggleDevMode
- * @param    {Boolean} Boolean
+ * @param    {Boolean} boolean
  * @desc     the purpose of this method is to allow a developer to set the
  *           dev mode feature to true or false
  */
