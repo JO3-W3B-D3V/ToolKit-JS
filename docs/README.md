@@ -1,5 +1,6 @@
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/JO3W3BD3V)
  [![JavaScript Style Guide: Good Parts](https://img.shields.io/badge/code%20style-goodparts-brightgreen.svg?style=flat)](https://github.com/dwyl/goodparts "JavaScript The Good Parts")
+ [![Dependency Status](https://david-dm.org/dwyl/esta.svg)](https://david-dm.org/dwyl/esta)
 
 # ToolkitV2
 Whilst I was roughly half way through the first version, I quickly began to realise that I had made the software rather bloated and therefore defeated my main foal with this library. So I decided to wipe the slate clean and simply start again, plus considering that I've been working on a few side project which are a lot smaller, I thought I could include those too.
