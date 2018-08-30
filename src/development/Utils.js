@@ -77,7 +77,7 @@ ToolKit.$e = function (query) {
 /**
  * @public
  * @function xpath
- * @param    {Object} options
+ * @param    {Object||String} options
  * @return   {Array[Element]}
  * @desc     The purpose of this method is to allow a developer to target
  *           DOM elements through using xpath rather than query selectors,
@@ -90,7 +90,7 @@ ToolKit.$e = function (query) {
 ToolKit.xpath = function (options) {
   var elements = [];
   var xml = options.xml || document;
-  var xpath = options.path || options.xpath;
+  var xpath = options.path || options.xpath || options;
   var target = options.target || xml;
   var resolver = options.resolver;
   var type = options.type || XPathResult.ANY_TYPE;
