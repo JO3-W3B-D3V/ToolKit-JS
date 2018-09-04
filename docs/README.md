@@ -32,9 +32,42 @@ Here's a list of features to expect:
 - Multi Threading
 - Template Engine 
 - Asynchronous Features
+- **Object Query Script**
 - Utilities 
   - Event Handler
   - DOM Selector 
   - etc.
 
 As you can see above, there's not a great deal of features included, _unlike version 1_, but the features that are included are pretty darn useful and powerful tools. You should take note that I've personally decided to drop support for IE9, if your target audience uses stone age technology, then I suggest you look through the half finished version 1 code and take what you like. I'm only dropping support for IE9 simply because it cannot handle features such as multi threading, there may be work around's, but as I aim to keep this library lightweight, I will not include such features.
+
+
+## What Is Object Query Script? 
+This is a simple tool that I came up with quite a while ago, it's simply a neat little tool that allows you to query an array of objects, an example being how you want to get all users where their age is greater than 18, but the size of the data set isn't big enough to bother requesting another http request. 
+
+That's another part of the reason why I initially developed this tool, to reduce the number of http requests, in addition to allowing the user to run queries while their offline. This tool is pretty simple to use and implement, with the ToolKit implementation, you can use such a technology like so: 
+
+```javascript
+var sql = new ToolKit.OQS();
+sql.createDB("test");
+sql.createTable("test_table").addColumn("id").addColumn("age").addColumn("name");
+
+var data = [];
+
+for (var i = 0; i < 100; i ++) {
+  var names = ["jack", "joe", "mollie", "chloe", "michelle", "stacy", "sam"];
+  var randomData = {};
+  var randomAge = Math.floor(Math.random() * Math.floor(120));
+  var randomName = names[Math.floor(Math.random() * names.length)];
+  randomData.age = randomAge;
+  randomData.name = randomName;
+  randomData.id = i;
+  data.push(randomData);
+}
+
+sql.insertInto("test_table").setData(data);
+
+var qry = sql.select("*").from("test_table").where("age GT 10").getResults();
+console.log(data);
+console.log(qry);
+```
+As you can see above, there's very little complexity involved, and it simply implements an OOP style approach to SQL, and the nice part is that you don't need to be able to access the web/sql server in order to execute this code. 
