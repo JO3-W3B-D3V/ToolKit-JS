@@ -778,7 +778,6 @@ ToolKit.OQS = function () {
         if (key == "*") {
           for (var i = offset; i < max; i ++) {
             results.push(tbl.records[i]);
-            console.log(tbl.records[i]);
           }
         } else {
           cols = key.split(",");
