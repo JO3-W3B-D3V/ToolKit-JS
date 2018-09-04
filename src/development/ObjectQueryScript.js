@@ -814,33 +814,3 @@ ToolKit.OQS = function () {
   return ToolKit.OQS.instance;
 };
 
-
-/**
- * @ignore
- * @desc   This is a meer test, and a demo to show how you could
- *         implement OQS in your own front end application.
- */
- /*
-  var sql = new ToolKit.OQS();
-  sql.createDB("test");
-  sql.createTable("test_table").addColumn("id").addColumn("age").addColumn("name");
-
-  var data = [];
-
-  for (var i = 0; i < 100; i ++) {
-    var names = ["jack", "joe", "mollie", "chloe", "michelle", "stacy", "sam"];
-    var randomData = {};
-    var randomAge = Math.floor(Math.random() * Math.floor(120));
-    var randomName = names[Math.floor(Math.random() * names.length)];
-    randomData.age = randomAge;
-    randomData.name = randomName;
-    randomData.id = i;
-    data.push(randomData);
-  }
-
-  sql.insertInto("test_table").setData(data);
-
-  var qry = sql.select("*").from("test_table").where("age GT 10").getResults();
-  console.log(data);
-  console.log(qry);
-*/
