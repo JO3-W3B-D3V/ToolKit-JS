@@ -24,15 +24,16 @@
  *            was capable of handeling 1,000,000 records, while that is an
  *            unrealistic amount of data to pass to the client's machine, I simply
  *            did such a test to ensure that the sheer size of data wasn't too
- *            much of an impact. 
+ *            much of an impact.
  * @copyright Joseph Evans(c) 2018
  * @todo      Consider implementing joins from table to table, etc.
  * @todo      Test the code in a great amount of detail, fix any bugs, etc.
  * @see       https://github.com/JO3-W3B-D3V/OQS
+ *
  */
 
 
-ToolKit = ToolKit || {};
+var ToolKit = ToolKit || {};
 
 /**
  * @public
@@ -144,12 +145,13 @@ ToolKit.OQS = function () {
     createDB : function (name) {
       validateString(name);
 
-      if (db[name] == null) {
+      if (databases[name] == null) {
         databases[name] = {
           name: name,
           tables: {}
         };
 
+        current = databases[name];
       } else {
         throw new Error(name + " Is an existing database already.");
       }
@@ -451,25 +453,25 @@ ToolKit.OQS = function () {
      */
     insertInto : function (name) {
       validateString(name);
-      var table = publicObject.crrent.tables[name];
+      var table = current.tables[name];
       var obj = {};
 
 
       /**
        * @private
-       * @function data
+       * @function setData
        * @param    {Object} data
        * @return   {Object}
        * @desc     The purpose of this method is to allow a user to
        *           set the data that they'd like to insert into a table.
        */
-      obj.data = function (data) {
-        if (data.legnth != null) {
+      obj.setData = function (data) {
+        if (data.length != null) {
           for (var i = 0, s = data.length; i < s; i ++) {
-            tables.records.push(data[i]);
+            table.records.push(data[i]);
           }
         } else {
-          tables.records.push(data);
+          table.records.push(data);
         }
 
         return publicObject
@@ -483,15 +485,15 @@ ToolKit.OQS = function () {
     /**
      * @public
      * @function select
-     * @param    {String} key
+     * @param    {String} selectKey
      * @return   {Object}
      * @desc     The purpose of this method is to allow the developer to specify
      *           what data they would like to query from a given table.
      */
-    select : function (key) {
-      validateString(key);
+    select : function (selectKey) {
+      validateString(selectKey);
       var obj = {};
-      var self = publicObject;
+      var key = selectKey;
       var results = [];
       var offset = 0;
       var limit = null;
@@ -519,27 +521,27 @@ ToolKit.OQS = function () {
       /**
        * @private
        * @function orderBy
-       * @param    {String} key
+       * @param    {String} col
        * @param    {String} order
        * @return   {Object}
        * @desc     The purpose of this method is to simply order the results
        *           in a specific fashion.
        */
-      var orderBy = function (key, order) {
-        validateString(key);
+      var orderBy = function (col, order) {
+        validateString(col);
         validateString(order);
 
         order = order.toLowerCase();
         if (order != "asc" && order != "desc") {
           throw new Error("Unkown order of " + order);
-        } else if (tbl.cols[key] == null) {
-          throw new Error("Unkown column with the name of " + key);
+        } else if (tbl.cols[col] == null) {
+          throw new Error("Unkown column with the name of " + col);
         }
 
         if (order == "asc") {
           results.sort(function (a, b) {
-            var r1 = a[key];
-            var r2 = b[key];
+            var r1 = a[col];
+            var r2 = b[col];
 
             if (r1 > r2) {
               return 1;
@@ -551,8 +553,8 @@ ToolKit.OQS = function () {
           });
         } else if (order == "desc") {
           results.sort(function (a, b) {
-            var r1 = a[key];
-            var r2 = b[key];
+            var r1 = a[col];
+            var r2 = b[col];
 
             if (r1 > r2) {
               return -1;
@@ -652,7 +654,7 @@ ToolKit.OQS = function () {
          */
         for (var i = 0, s = test.length; i < s; i ++) {
           var queryColumn = test[i].toLowerCase();
-          if (tbl[queryColumn] != null) {
+          if (tbl.cols[queryColumn] != null) {
             var reg = new RegExp("\\b" + queryColumn + "\\b", "g");
             var re = "row['" + queryColumn + "']";
             query = query.toLowerCase().replace(reg, re);
@@ -668,9 +670,9 @@ ToolKit.OQS = function () {
          */
         for (var i = 0, s = switches.length; i < s; i ++) {
           var switchObject = switches[i];
-          var key = switchObject.key;
-          var value = switchObject.value;
-          query = query.replace(new RegExp("\\b" + key + "\\b", "g"), value);
+          var objKey = switchObject.key;
+          var objValue = switchObject.value;
+          query = query.replace(new RegExp("\\b" + objKey + "\\b", "g"), objValue);
         }
 
 
@@ -684,7 +686,7 @@ ToolKit.OQS = function () {
             var row = results[i];
 
             if (eval(query)) {
-              queryResults.push(record);
+              queryResults.push(row);
             }
           }
         } else {
@@ -770,12 +772,13 @@ ToolKit.OQS = function () {
        */
       obj.from = function (tableName) {
         validateString(tableName);
-        tbl = self.current.tables[tableName];
+        tbl = current.tables[tableName];
         var max = limit || tbl.records.length;
 
         if (key == "*") {
           for (var i = offset; i < max; i ++) {
             results.push(tbl.records[i]);
+            console.log(tbl.records[i]);
           }
         } else {
           cols = key.split(",");
@@ -786,9 +789,9 @@ ToolKit.OQS = function () {
             var item = {};
 
             for (var j = 0, z = cols.length; j < z; j++) {
-              var key = cols[i];
-              var value = record[key];
-              item[key] = value;
+              var recordKey = cols[i];
+              var recordValue = record[recordKey];
+              item[recordKey] = recordValue;
             }
 
             results.push(item);
@@ -810,3 +813,34 @@ ToolKit.OQS = function () {
   ToolKit.OQS.instance = publicObject;
   return ToolKit.OQS.instance;
 };
+
+
+/**
+ * @ignore
+ * @desc   This is a meer test, and a demo to show how you could
+ *         implement OQS in your own front end application.
+ */
+ /*
+  var sql = new ToolKit.OQS();
+  sql.createDB("test");
+  sql.createTable("test_table").addColumn("id").addColumn("age").addColumn("name");
+
+  var data = [];
+
+  for (var i = 0; i < 100; i ++) {
+    var names = ["jack", "joe", "mollie", "chloe", "michelle", "stacy", "sam"];
+    var randomData = {};
+    var randomAge = Math.floor(Math.random() * Math.floor(120));
+    var randomName = names[Math.floor(Math.random() * names.length)];
+    randomData.age = randomAge;
+    randomData.name = randomName;
+    randomData.id = i;
+    data.push(randomData);
+  }
+
+  sql.insertInto("test_table").setData(data);
+
+  var qry = sql.select("*").from("test_table").where("age GT 10").getResults();
+  console.log(data);
+  console.log(qry);
+*/
