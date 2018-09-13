@@ -23,6 +23,11 @@ I simply binned it, I sure it's on git if you look through the commits, but most
 ### So what now? 
 From this moment on, I plan to continue development on ToolKitJS, I also plan to begin uploading content and features later today(_21/02018_).
 
+### ToolKit VS Other Libs/Frameworks
+Okay, here's a simple answer as to why you may want to use ToolKit over Angular or React, etc, it was made to be as flexible as possible. It's totally modular, you can use one component of the ToolKit library or you can use all of it, it's totally up to you. Plus with ToolKit, you can use jQuery along side it, you _could_ use any framework along side it if you wanted to, it's your call, your decision. This is a JavaScript solution that was made by a developer, for the developer community, plus due to how simplified the documentation is you can probably play around with features that may already exist in the ToolKit library, it offers total freedom. If you don't want to use the `Ninja` template engine, cool, you can always use React and `JSX`. If you don't want to use the `AJAX` method, it's all good, you can use jQuery & `$.AJAX`, I think you get the point.... 
+
+The end point of this section is to clarify how it's modular, unlike a lot of JavaScript libraries and/or frameworks. 
+
 
 ## So What's Included?
 Here's a list of features to expect: 
