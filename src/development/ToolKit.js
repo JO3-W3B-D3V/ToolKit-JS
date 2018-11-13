@@ -1,7 +1,7 @@
 /**
  * @author    Joseph Evans <joeevs196@gmail.com>
  * @since     13/11/2018
- * @version   3.0.0
+ * @version   3.0.1
  * @file      The purpose of this framework is simple, to implement a small framework, including
  *            a few neat features, a few of the standard features includes the following:
  *
@@ -160,6 +160,39 @@ var ToolKit = function () {
         // error recovery?
       }
     }
+  };
+
+
+
+  /**
+   * @public
+   * @function TemplateEngine
+   * @return   {String}
+   * @desc     This is clearly here so that people have the power to use an alternative template
+   *           engine, i.e. Mustache.
+   */
+  publicProps.TemplateEngine = function (html, data) {
+    var templates = /<%([^%>]+)?%>/g;
+    var operations = /(^( )?(if|for|else|switch|case|break|var|let|const|this|try|catch|finally|console|self|{|}|;|:|[|]))(.*)?/g,
+      code = 'var r=[];\nvar data = this;\n',
+      cursor = 0,
+      match;
+
+    var add = function (line, js) {
+      js ? (code += line.match(operations)
+        ? line + '\n' : 'r.push(' + line + ');\n') :
+        (code += line != '' ? 'r.push("' + line.replace(/"/g, '\\"') + '");\n' : '');
+      return add;
+    };
+
+    while (match = templates.exec(html)) {
+      add(html.slice(cursor, match.index))(match[1], true);
+      cursor = match.index + match[0].length;
+    }
+
+    add(html.substr(cursor, html.length - cursor));
+    code += 'return r.join("");';
+    return new Function(code.replace(/[\r\t\n]/g, '')).apply(data);
   };
 
 
@@ -342,29 +375,7 @@ var ToolKit = function () {
 
 
     // This is the core  template engine.
-    me.render = function (html, data) {
-      var templates = /<%([^%>]+)?%>/g;
-      var operations = /(^( )?(if|for|else|switch|case|break|var|let|const|this|try|catch|finally|console|self|{|}|;|:|[|]))(.*)?/g,
-        code = 'var r=[];\nvar data = this;\n',
-        cursor = 0,
-        match;
-
-      var add = function (line, js) {
-        js ? (code += line.match(operations)
-          ? line + '\n' : 'r.push(' + line + ');\n') :
-          (code += line != '' ? 'r.push("' + line.replace(/"/g, '\\"') + '");\n' : '');
-        return add;
-      };
-
-      while (match = templates.exec(html)) {
-        add(html.slice(cursor, match.index))(match[1], true);
-        cursor = match.index + match[0].length;
-      }
-
-      add(html.substr(cursor, html.length - cursor));
-      code += 'return r.join("");';
-      return new Function(code.replace(/[\r\t\n]/g, '')).apply(data);
-    };
+    me.render = publicProps.TemplateEngine;
 
 
 
