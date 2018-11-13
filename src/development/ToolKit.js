@@ -392,10 +392,16 @@ var ToolKit = function () {
     me.persistance = args.persistance || false; // Boolean
     clone = JSON.parse(JSON.stringify(me.state));
 
+
+
+    // Does it matter if it's null? What if it's meant to be null?
     if (me.persistance === true) {
-      var cached = publicProps.Store.get(me.name);
-      me.state = cached;
-      clone = JSON.parse(JSON.stringify(me.state));
+      var cahce = publicProps.Store.get(me.name);
+
+      if (cahce != null) {
+        me.state = cahce;
+        clone = JSON.parse(JSON.stringify(me.state));
+      }
     }
 
 
