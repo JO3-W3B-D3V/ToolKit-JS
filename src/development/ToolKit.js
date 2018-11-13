@@ -972,6 +972,164 @@ var ToolKit = function () {
   };
 
 
+  /**
+   * @see http://krasimirtsonev.com/blog/article/A-modern-JavaScript-router-in-100-lines-history-api-pushState-hash-url
+   */
+  publicProps.Router =  {};
+
+
+
+  publicProps.Router.routes = [];
+  publicProps.Router.mode = "hash"; // default for IE support
+  publicProps.Router.root = '/';
+
+
+  /**
+   *
+   */
+  publicProps.Router.config = function(options) {
+    publicProps.Router.mode = options && options.mode && options.mode === 'history'
+    && !!(history.pushState) ? 'history' : 'hash';
+    publicProps.Router.root = options && options.root ? '/' + publicProps.Router.clearSlashes(options.root) + '/' : '/';
+  };
+
+
+
+  /**
+   *
+   */
+  publicProps.Router.getFragment = function() {
+    var fragment = '';
+
+    if(publicProps.Router.mode === 'history') {
+      fragment = publicProps.Router.clearSlashes(decodeURI(location.pathname + location.search));
+      fragment = fragment.replace(/\?(.*)$/, '');
+      fragment = publicProps.Router.root !== '/' ? fragment.replace(publicProps.Router.root, '') : fragment;
+    } else {
+      var match = window.location.href.match(/#(.*)$/);
+      fragment = match ? match[1] : '';
+    }
+
+
+    return publicProps.Router.clearSlashes(fragment);
+  };
+
+
+
+  /**
+   *
+   */
+  publicProps.Router.clearSlashes = function(path) {
+    return path.toString().replace(/\/$/, '').replace(/^\//, '');
+  };
+
+
+
+  /**
+   *
+   */
+  publicProps.Router.add = function(re, handler) {
+    if(typeof re === 'function') {
+      handler = re;
+      re = '';
+    }
+
+    publicProps.Router.routes.push({ re: re, handler: handler});
+    return publicProps.Router;
+  };
+
+
+  /**
+   *
+   */
+    publicProps.Router.remove = function(param) {
+    for(var i = 0; i < publicProps.Router.routes.length; i++) {
+      var r = publicProps.Router.routes[i];
+
+      if(r.handler === param || r.re.toString() === param.toString()) {
+        publicProps.Router.routes.splice(i, 1);
+        return publicProps.Router;
+      }
+    }
+
+    return publicProps.Router;
+  };
+
+
+
+  /**
+   *
+   *
+   */
+  publicProps.Router.flush = function() {
+    publicProps.Router.routes = [];
+    publicProps.Router.mode = null;
+    publicProps.Router.root = '/';
+    return publicProps.Router;
+  };
+
+
+
+  /**
+   *
+   *
+   */
+  publicProps.Router.check = function(f) {
+    var fragment = f || publicProps.Router.getFragment();
+    var routes = publicProps.Router.routes;
+
+    for(var i = 0; i < routes.length; i++) {
+      var route = routes[i];
+      var match = fragment.match(route.re);
+
+      if(match) {
+        match.shift();
+        route.handler.apply({}, match);
+        return publicProps.Router;
+      }
+    }
+
+    return publicProps.Router;
+  };
+
+
+  /**
+   *
+   *
+   */
+  publicProps.Router.listen = function() {
+    var self = publicProps.Router;
+    var current = self.getFragment();
+
+    var fn = function() {
+      if(current !== self.getFragment()) {
+        current = self.getFragment();
+        self.check(current);
+      }
+    };
+
+    clearInterval(publicProps.Router.interval);
+    publicProps.Router.interval = setInterval(fn, 50);
+    return publicProps.Router;
+  };
+
+
+  /**
+   *
+   */
+  publicProps.Router.navigate = function(path) {
+    path = path ? path : '';
+
+    if(publicProps.Router.mode === 'history') {
+      history.pushState(null, null, publicProps.Router.root + publicProps.Router.clearSlashes(path));
+    } else {
+      window.location.href = window.location.href.replace(/#(.*)$/, '') + '#' + path;
+    }
+
+    return publicProps.Router;
+  };
+
+
 
   // Just return the public properties.
   return publicProps;
