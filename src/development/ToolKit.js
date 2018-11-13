@@ -825,8 +825,8 @@ var ToolKit = function () {
       // Replace the syntax sugar.
       for (var i = 0, s = syntaxes.length; i < s; i ++) {
         var syntax = syntaxes[i];
-        const reg = new RegExp("\\b" + syntax.txt + "\\b", "g");
-        const re = " " + syntax.symbol + " ";
+        var reg = new RegExp("\\b" + syntax.txt + "\\b", "g");
+        var re = " " + syntax.symbol + " ";
         logic = logic.replace(reg, re);
       }
 
@@ -835,8 +835,8 @@ var ToolKit = function () {
       // Replace the columns.
       for (var i = 0, s = cols.length; i < s; i ++) {
         var col = cols[i];
-        const reg = new RegExp("\\b" + col + "\\b", "g");
-        const re = 'record["' + col + '"]';
+        var reg = new RegExp("\\b" + col + "\\b", "g");
+        var re = 'record["' + col + '"]';
         logic = logic.replace(reg, re);
       }
 
@@ -926,7 +926,7 @@ var ToolKit = function () {
    */
   publicProps.DOM.ready = function (callback) {
     var isDOMReady = function () {
-      const state = document.readyState.toString();
+      var state = document.readyState.toString();
       return (state === "complete" || state === "loaded" || state === "interactive");
     };
 
