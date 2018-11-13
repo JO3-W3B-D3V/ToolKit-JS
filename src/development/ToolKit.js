@@ -389,8 +389,14 @@ var ToolKit = function () {
     me.monitor = args.monitor || false; // Boolean
     me.state = args.state; // Object
     me.sync = args.sync || true; // Boolean
+    me.persistance = args.persistance || false; // Boolean
     clone = JSON.parse(JSON.stringify(me.state));
 
+    if (me.persistance === true) {
+      var cached = publicProps.Store.get(me.name);
+      me.state = cached;
+      clone = JSON.parse(JSON.stringify(me.state));
+    }
 
 
     // Now to start the lifecycle.
@@ -406,6 +412,10 @@ var ToolKit = function () {
         if (stateString !== cloneString) {
           if (typeof me.onStateChange === "function") {
             me.onStateChange();
+          }
+
+          if (me.persistance === true) {
+            publicProps.Store.set(me.name, me.state);
           }
 
           if (me.sync === true) {
@@ -539,6 +549,8 @@ var ToolKit = function () {
       args.monitor = props.monitor;
     } if (props.sync != null && typeof props.sync === "boolean") {
       args.sync = props.sync;
+    } if (props.presistance != null && typeof props.persistance === "boolean") {
+      args.persistance = props.persistance;
     }
 
 
@@ -793,7 +805,17 @@ var ToolKit = function () {
    * @desc
    */
   publicProps.Query.offset = function (offset) {
+    var max = privateProps.table.length - 1;
 
+    try {
+      offset = parseInt(offset.toString());
+    } catch (Exception) {
+      // todo
+    }
+
+    if (!isNaN(offset) && offset < max && offset > 0) {
+      privateProps.Query.offset = offset;
+    }
   };
 
 
