@@ -82,3 +82,6 @@ setTimeout(function () {
 ToolKit is what the name may imply, it's a set of tools that have been gathered together, only a 
 lot of the tool(s) have been stripped to their core, making sure that ToolKit-JS stays as 
 lightweight as possible, whilst delivering plenty of functionality. 
+
+## Todo 
+Update documentation & whatnot! 
