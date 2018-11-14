@@ -390,6 +390,7 @@ var ToolKit = function () {
     me.state = args.state; // Object
     me.sync = args.sync || true; // Boolean
     me.persistance = args.persistance || false; // Boolean
+    me.append = args.append || false; // Boolean
     clone = JSON.parse(JSON.stringify(me.state));
 
 
@@ -425,7 +426,11 @@ var ToolKit = function () {
           }
 
           if (me.sync === true) {
-            me.root.innerHTML = me.render(me.template, me.state);
+            if (!me.append) {
+              me.root.innerHTML = me.render(me.template, me.state);
+            } else {
+              me.root.innerHTML += me.render(me.template, me.state);
+            }
 
             if (typeof me.onRender === "function") {
               me.onRender(me.root);
@@ -456,7 +461,11 @@ var ToolKit = function () {
 
     // Run the rendering.
     if (me.sync === true) {
-      me.root.innerHTML = me.render(me.template, me.state);
+      if (!me.append) {
+        me.root.innerHTML = me.render(me.template, me.state);
+      } else {
+        me.root.innerHTML += me.render(me.template, me.state);
+      }
     }
 
 
@@ -557,6 +566,8 @@ var ToolKit = function () {
       args.sync = props.sync;
     } if (props.presistance != null && typeof props.persistance === "boolean") {
       args.persistance = props.persistance;
+    } if (props.append != null && typeof props.append === "boolean") {
+      args.append = props.append;
     }
 
 
