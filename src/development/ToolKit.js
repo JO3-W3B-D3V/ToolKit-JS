@@ -1027,6 +1027,10 @@ var ToolKit = function () {
       } catch (Error) {
         publicProps.log(Error);
       }
+
+      if (path == null && route.re == null) {
+        return route.handler();
+      }
     }
   };
 
