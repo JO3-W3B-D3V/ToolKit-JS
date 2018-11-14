@@ -4,9 +4,9 @@
 
 # ToolkitV3
 Okay, so I've gone and scrapped version 1 & version 2, simply because the ultimate goal behind 
-ToolKit is to offer a set of tools, not necessarily a framework per-say, but rather s library. 
-You can think of ToolKit as a library to aid the development of front end application 
-development. ToolKit is a powerful tool for beginners to learn, as it includes some of the 
+ToolKitMin is to offer a set of tools, not necessarily a framework per-say, but rather s library. 
+You can think of ToolKitMin as a library to aid the development of front end application 
+development. ToolKitMin is a powerful tool for beginners to learn, as it includes some of the 
 following: 
 
 - Components
@@ -22,7 +22,7 @@ Here's an example of some code...
 
 ```javascript
 // Basic demo.
-var app = ToolKit;
+var app = ToolKitMin;
 app.DOM.ready(function () {
   console.log(app);
   app.Session.set('user_id', {user_id : 1});
@@ -79,8 +79,8 @@ setTimeout(function () {
 }, 2000);
 ```
 
-ToolKit is what the name may imply, it's a set of tools that have been gathered together, only a 
-lot of the tool(s) have been stripped to their core, making sure that ToolKit-JS stays as 
+ToolKitMin is what the name may imply, it's a set of tools that have been gathered together, only a 
+lot of the tool(s) have been stripped to their core, making sure that ToolKitMin-JS stays as 
 lightweight as possible, whilst delivering plenty of functionality. 
 
 ## Todo 
