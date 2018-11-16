@@ -699,7 +699,7 @@ var ToolKit = function () {
       xhr.addEventListener('abort', function () { args.abort(xhr); });
     } if (args.success != null && typeof args.success === "function") {
       xhr.addEventListener('load', function () {
-        var data = xhr.response;
+        var data = xhr.response || xhr.responseText;
 
         try {
           data = JSON.parse(data);
