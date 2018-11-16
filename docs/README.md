@@ -22,7 +22,7 @@ Here's an example of some code...
 
 ```javascript
 // Basic demo.
-var app = ToolKitMin;
+var app = ToolKit;
 app.DOM.ready(function () {
   console.log(app);
   app.Session.set('user_id', {user_id : 1});
