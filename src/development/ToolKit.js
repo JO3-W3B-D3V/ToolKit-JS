@@ -1,7 +1,7 @@
 /**
  * @author    Joseph Evans <joeevs196@gmail.com>
  * @since     14/11/2018
- * @version   3.0.3
+ * @version   3.0.4
  * @file      The purpose of this framework is simple, to implement a small framework, including
  *            a few neat features, a few of the standard features includes the following:
  *
@@ -203,16 +203,18 @@ var ToolKit = function () {
    * @param    {Object} parent
    * @param    {String} queryString
    * @return   {Element}
-   * @desc     Simply implement jQuery's $('x'), only rather than returning an array of length
-   *           1, return the first item to match the query string.
+   * @desc     Simply implement something like jQuery's $('x'), only rather than returning an
+   *           array of length 1, return the first item to match the query string.
    */
   publicProps.Utils.$one = function (parent, queryString) {
-    if (typeof parent === 'string') {
+    if (typeof parent === 'string' && typeof queryString !== 'string') {
       queryString = parent.toString();
       parent = document;
+    } else if (typeof parent === 'string' && typeof queryString === 'string') {
+      parent = document.querySelector(queryString);
     }
 
-    return parent.querySelector(queryString.toString());
+    return parent.querySelector(queryString);
   };
 
 
@@ -223,15 +225,18 @@ var ToolKit = function () {
    * @param    {Object} parent
    * @param    {String} queryString
    * @return   {NodeList}
-   * @desc     Simply implement jQuery's $('x'), also returning an array of HTML elements.
+   * @desc     Simply implement something like jQuery's $('x'), also returning an array of HTML
+   *           elements.
    */
   publicProps.Utils.$all = function (parent, queryString) {
-    if (typeof parent === 'string') {
+    if (typeof parent === 'string' && typeof queryString !== 'string') {
       queryString = parent.toString();
       parent = document;
+    } else if (typeof parent === 'string' && typeof queryString === 'string') {
+      parent = document.querySelector(queryString);
     }
 
-    return parent.querySelectorAll(queryString.toString());
+    return parent.querySelectorAll(queryString);
   };
 
 
