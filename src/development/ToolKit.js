@@ -1,7 +1,7 @@
 /**
  * @author    Joseph Evans <joeevs196@gmail.com>
  * @since     14/11/2018
- * @version   3.0.4
+ * @version   3.0.5
  * @file      The purpose of this framework is simple, to implement a small framework, including
  *            a few neat features, a few of the standard features includes the following:
  *
@@ -211,7 +211,7 @@ var ToolKit = function () {
       queryString = parent.toString();
       parent = document;
     } else if (typeof parent === 'string' && typeof queryString === 'string') {
-      parent = document.querySelector(queryString);
+      parent = document.querySelector(parent);
     }
 
     return parent.querySelector(queryString);
@@ -233,8 +233,9 @@ var ToolKit = function () {
       queryString = parent.toString();
       parent = document;
     } else if (typeof parent === 'string' && typeof queryString === 'string') {
-      parent = document.querySelector(queryString);
+      parent = document.querySelector(parent);
     }
+
 
     return parent.querySelectorAll(queryString);
   };
