@@ -21,7 +21,6 @@ following:
 Here's an example of some code... 
 
 ```javascript
-// Basic demo.
 var app = ToolKit;
 app.DOM.ready(function () {
   console.log(app);
@@ -51,7 +50,7 @@ app.DOM.ready(function () {
       app.Query.exe();
     }
   });
-  
+
   // Component demo.
   window.appState = {
     name: 'Will I Am'
@@ -71,12 +70,35 @@ app.DOM.ready(function () {
   };
 
   app.Component.registerComponent(component);
+
+  app.Router.add(/home/, function () {
+    console.log('Home page.');
+  });
+  app.Router.add(/about/, function () {
+    console.log('About page');
+  });
+  app.Router.add(function () {
+    console.log('404 Error?!');
+  });
 });
 
 // Wait 2 seconds to see the component update.
 setTimeout(function () {
   window.appState.name = "Will Smith";
 }, 2000);
+
+// Test the router.
+setTimeout(function () {
+  app.Router.navigate('home');
+}, 1000);
+
+setTimeout(function() {
+  app.Router.navigate('about');
+}, 2000);
+
+setTimeout(function () {
+  app.Router.navigate('404test');
+}, 3000);
 ```
 
 ToolKitMin is what the name may imply, it's a set of tools that have been gathered together, only a 
