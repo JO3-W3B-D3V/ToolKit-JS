@@ -36,10 +36,10 @@
  *
  * @todo      Implement some test(s) through the use of Mocha.
  *
- * @todo      Test the newly added features, i.e. the templateURL property 
+ * @todo      Test the newly added features, i.e. the templateURL property
  *            on the Component class.
  *
- * @todo      Add more error recovery methods, i.e. the implementation of AJAX.  
+ * @todo      Add more error recovery methods, i.e. the implementation of AJAX.
  *
  * @copyright (c) 2018 copyright holder all Rights Reserved.
  *            Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -394,7 +394,7 @@ var ToolKit = function () {
     var clone;
     var lifecycle;
     var args = props || {};
-		var loading = false;
+    var loading = false;
 
 
 
@@ -406,13 +406,13 @@ var ToolKit = function () {
     // Set up all of the component's properties.
     me.name = args.name; // String
     me.root = args.root; // Element
-		
-		if (args.template != null) {
-			me.template = args.template; // String
-		} else if (args.templateURL != null) {
-			loading = true; // Wait for the template to load.
-			me.template = null;
-		}
+
+    if (args.template != null) {
+      me.template = args.template; // String
+    } else if (args.templateURL != null) {
+      loading = true; // Wait for the template to load.
+      me.template = null;
+    }
     me.onStateChange = args.onStateChange; // Function
     me.onRender = args.onRender; // Function
     me.lifeSpan = args.lifeSpan || privateProps.lifeSpan; // Int
@@ -434,22 +434,22 @@ var ToolKit = function () {
         clone = JSON.parse(JSON.stringify(me.state));
       }
     }
-		
-		
-		
-		// Load the template in via ajax.
-		if (args.templateURL != null && loading === true) {
-			publicProps.Service({
-				method: 'GET', 
-				url: args.templateURL,
-				success: function (data) {
-					me.template = data;
-				}
-			});
-		}
 
 
-		
+
+    // Load the template in via ajax.
+    if (args.templateURL != null && loading === true) {
+      publicProps.Service({
+        method: 'GET',
+        url: args.templateURL,
+        success: function (data) {
+          me.template = data;
+        }
+      });
+    }
+
+
+
     // Now to start the lifecycle.
     self.startLifeCycle = function () {
       if (lifecycle != null) {
@@ -457,11 +457,11 @@ var ToolKit = function () {
       }
 
       lifecycle = setInterval(function () {
-				// Make sure that the template is not null.
-				if (me.template == null) { 
-					return; 
-				}
-				
+        // Make sure that the template is not null.
+        if (me.template == null) {
+          return;
+        }
+
         var stateString = JSON.stringify(me.state);
         var cloneString = JSON.stringify(clone);
 
@@ -569,20 +569,20 @@ var ToolKit = function () {
     } else if (typeof props.state !== 'object') {
       return publicProps.log('Invalid properties for a component.');
     } else if (typeof props.templateURL !== 'string' && props.templateURL != null) {
-			return publicProps.log('Invalid properties for a component.');
-		}
+      return publicProps.log('Invalid properties for a component.');
+    }
 
 
     // Now that it's safe to use the above properties, copy them over.
     args.name = props.name;
     args.root = props.root;
-		if (props.template != null) {
-			args.template = props.template;
-			arg.templateURL = null;
-		} else if (props.templateURL != null) {
-			args.templateURL = props.templateURL;
-			args.template = null;
-		} 
+    if (props.template != null) {
+      args.template = props.template;
+      arg.templateURL = null;
+    } else if (props.templateURL != null) {
+      args.templateURL = props.templateURL;
+      args.template = null;
+    }
     args.state = props.state;
 
 
@@ -1028,14 +1028,15 @@ var ToolKit = function () {
 
     var toRun = function () {
       if (typeof callback === "function") {
-        return callback();
+        try { setTimeout(callback, 10); }
+        catch (TimeOutError) { callback(); }
       }
     };
 
     if (!isDOMReady()) {
       document.addEventListener('DOMContentLoaded', toRun);
     } else {
-      callback();
+      toRun();
     }
   };
 
