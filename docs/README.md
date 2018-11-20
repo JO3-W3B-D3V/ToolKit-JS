@@ -107,3 +107,63 @@ lightweight as possible, whilst delivering plenty of functionality.
 
 ## Todo 
 Update documentation & whatnot! 
+
+<br/>
+<hr/>
+<br/>
+
+## Features 
+
+- Service 
+- Component
+- Utils 
+- Query
+- Router 
+- Template Engine 
+- Others
+  - DOM
+  - log 
+  - Session 
+  - Store 
+
+
+### Service 
+The service method is simply ToolKit's implementation of ajax. 
+
+### Component
+This implements a template which handles some DHTML template via the template engine, 
+it also handles its own state which can be manipulated outside of the component, like in the example. 
+Finally it can dispatch it's own controller's via making use of the 'onRender' property/function.
+
+### Utils 
+This is just a name space for useful/simple methods, not much more to it than that. 
+
+### Query 
+This allows you to execute a 'query' over an array of objects, it runs via making use of a callback to 
+ensure that the main execution thread is never blocked by iterating over a large data-set. 
+
+### Router  
+Allows you to have different URL's within the front end, allowing for an SPA, currently it 
+only allows for hash based URL's, and it does not monitor URL changes by default, i.e. user 
+tries to navigate to a different URL. Although such a feature is so simplistic that I believe it 
+could be down to the developer(s) decision whether or not to implement such a feature, after all it is 
+mean to be lightweight. 
+
+### Template Engine 
+Currently it makes use of a template engine somewhat similar to EJS, although much smaller 
+minimal and simplistic. 
+
+### Others 
+These are just simple tools that can be used if necessary or not. 
+
+#### DOM 
+Namespace for DOM related features. 
+
+#### log 
+Simply ```console.log```, although it requires dev-mode to be set to true. 
+
+#### Session 
+Allows you to store data into a user's session, aka a cover over session storage. 
+
+#### Store 
+Allows you to store data into local storage.
