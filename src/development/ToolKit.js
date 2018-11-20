@@ -1,7 +1,7 @@
 /**
  * @author    Joseph Evans <joeevs196@gmail.com>
  * @since     14/11/2018
- * @version   3.0.6
+ * @version   3.0.7
  * @file      The purpose of this framework is simple, to implement a small framework, including
  *            a few neat features, a few of the standard features includes the following:
  *
@@ -1103,6 +1103,41 @@ var ToolKit = function () {
     }
   };
 
+
+
+  /**
+   * @public
+   * @function watch
+   * @param    {Function} onChange
+   * @desc     This method will simply fire some callback when a change in
+   *           the url occurs.
+   */
+  publicProps.Router.watch = function (onChange) {
+    var cache = window.location.href.toString();
+
+    try {
+      clearInterval(publicProps.Router.monitorURI);
+    } catch (Error) {
+      // meh?
+    }
+
+    publicProps.Router.monitorURI = setInterval(function () {
+      if (window.location.href !== cache) {
+        cache = window.location.href;
+        var route = '';
+
+        if (cache.indexOf('#') > -1) {
+          route = cache.substring(cache.indexOf('#') + 1, cache.length);
+          if (typeof onChange === 'function') {
+            onChange();
+          }
+          setTimeout(function () {
+            publicProps.Router.navigate(route);
+          }, 20);
+        }
+      }
+    }, 10);
+  };
 
 
   // Just return the public properties.
