@@ -1,7 +1,7 @@
 /**
  * @author    Joseph Evans <joeevs196@gmail.com>
  * @since     14/11/2018
- * @version   3.0.7
+ * @version   3.0.8
  * @file      The purpose of this framework is simple, to implement a small framework, including
  *            a few neat features, a few of the standard features includes the following:
  *
@@ -166,6 +166,7 @@ var ToolKit = function () {
     me.setArray = function (data) {
       if (Array.isArray(data))  {
         array = data;
+        updateSubset();
       }
     };
 
