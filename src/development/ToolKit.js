@@ -115,6 +115,96 @@ var ToolKit = function () {
   publicProps.Utils = {};
 
 
+
+  /**
+   * @public
+   * @function Paginate
+   * @return   {Object}
+   * @desc     A simple implementation of a tool that can be used for paginating, or
+   *           simply iterating over an array in steps.
+   */
+  publicProps.Utils.Paginate = function (data) {
+    var array = [];
+    var subset = [];
+    var index = 0;
+    var limit = 5; // Just a default value?
+    var me = {};
+
+    // Simple methods to return primitive values.
+    me.getLimit = function () { return limit; };
+    me.getIndex = function () { return index; };
+
+    // Try to make sure it's a copy, aka it's been through a dereference process.
+    me.getArray = function () {
+      var clone;
+      try { clone = JSON.parse(JSON.stringify(array)); }
+      catch (Error) { clone = array; }
+      return clone;
+    };
+
+    // Try to make sure it's a copy, aka it's been through a dereference process.
+    me.getSubset = function () {
+      var clone;
+      try { clone = JSON.parse(JSON.stringify(subset)); }
+      catch (Error) { clone = subset; }
+      return clone;
+    };
+
+    // Make sure that the limit is relevant, if so set it, if not try and assume the value.
+    me.setLimit = function (i) {
+      try {
+        var toInt = parseInt(i);
+        if (!isNaN(toInt) && toInt > 0 && toInt <= array.length) { limit = toInt; }
+        else if (toInt === 0 || toInt < 0) { limit = 0 ;}
+        else if (toInt > array.length) { limit = array.length; }
+      } catch (Error) {
+        // No worries?
+      }
+    };
+
+    // Simply update the array property.
+    me.setArray = function (data) {
+      if (Array.isArray(data))  {
+        array = data;
+      }
+    };
+
+    // This will simply update teh subset property.
+    var updateSubset = function () {
+      subset = [];
+      var start = index * limit || 0;
+      var end = start + 5;
+
+      for (var i = start; i < end; i++) {
+        if (array[i] != null) {
+          subset.push(array[i]);
+        } else {
+          break;
+        }
+      }
+
+      return subset;
+    };
+
+    // Increment by 'x' amount.
+    me.next = function () {
+      if (index < array.length) index++;
+      return updateSubset();
+    };
+
+    // Decrement by 'x' amount.
+    me.prev = function () {
+      if (index > 0) index--;
+      return updateSubset();
+    };
+
+    // Set the array property from what was passed into the constructor/initial method.
+    me.setArray(data);
+    return me;
+  };
+
+
+
   /**
    * @public
    * @function isDefined
