@@ -19,7 +19,8 @@
           <li><a href="#">Intro</a></li>
           <li><a href="#whyuse">Useage</a></li>
           <li><a href="#DOM">DOM</a></li>
-          <li><a href="#AJAX">AJAX</a></li>
+          <li><a href="#Service">Service</a></li>
+					<li><a href="#Query">Query</a></li>
         </ul>
       </nav>
     </div>
@@ -27,61 +28,65 @@
       <div id="intro" class="doc">
         <h3>Introduction</h3>
         <hr/>
-        <p>ToolKit is a nice client side JavaScript library that offers something
-        a little different that you'd expect to see in most JavaScript libraries.
-        ToolKit doesn't offer a great deal in the way that a tool such as jQuery,
-        but rather more advance tools, an example being the multithreading wrapper
-        that's included. ToolKit comes with a few very neat, fast and reasonably
-        powerful and stable features, if you like you can customise which features
-        you wish to include by having a look at the following components
+        <p>ToolKit-JS is a small front end framework, it has an array of neat features, 
+				from components through to it's own implementation of AJAX, you can find ToolKit
         <a target="_blank" href="https://github.com/JO3-W3B-D3V/ToolKit-JS/tree/master/src/development">here</a>.
         </p>
       </div>
       <div id="whyuse" class="doc">
         <h3>Why use ToolKit?</h3>
         <hr/>
-        <p>This is a simple question, and it deserves a simple answer, ToolKit is
-        simply made by developer(s) whom are passionate about getting the best
-        performance:bloat:power:featureful ratio possible.</p>
+        <p>This is a simple question, and it deserves a simple answer, unlike a lot 
+				of modern front end technologies, ToolKit is simple, it's lightweight and relatively 
+				fast.</p>
       </div>
       <div id="DOM" class="doc">
         <h3>Targeting DOM Elements</h3>
         <hr/>
-        <p>Out of the box, the ultimate aim of ToolKit is to provide a front end developer
-        with some tools that a front end developer may need, without the cost of overloading
-        the front end with bloated code nor does it include a great deal of complexity. This
-        is a part of the reason as to why ToolKit doesn't come with an endless supply of tools,
-        such as some of the many DOM manipulation tools that you'd find in something
-        like jQuery, as an example.</p>
-        <p>If you wish to stay away from jQuery, then ToolKit does include a simple
-        feature that allows you to target DOM elements, however the style is ever so
-        slightly different to prevent any issues with those whom wish to use jQuery.
-        If you wish to target DOM elements in a similar fashion to jQuery's DOM targeting
-        tool, you can do it like so:</p>
+        <p>To target DOM elements, you can use the following methods: </p>
         <div>
-          jQuery's implementation: <pre>$</pre>
+          <pre>ToolKit.Utils.$one('#idName'); // get a single element </pre>
         </div>
-        <div>
-           ToolKit's implementation: <pre>ToolKit.$e</pre>
+				<div>
+          <pre>ToolKit.Utils.$all('.className'); // get an array of elements </pre>
         </div>
       </div>
-      <div id="AJAX" class="doc">
-        <h3>AJAX</h3>
+      <div id="Service" class="doc">
+        <h3>Service</h3>
         <hr/>
-        <p>Furthermore, if you wish to use AJAX, you can do so with ToolKit also.
-        One neat feature about ToolKit's implementation of AJAX is that it will
-        automatically set the 'no-sniff' header, just to <i>help</i> ensure that your
-        front end application is secure. <b>However</b>, there are a few subtle
-        differences when comparing the jQuery implementation of AJAX to the ToolKit
-        implementation. For one they take parameters that are <i>slightly</i> different,
-        however if you're familiar with jQuery's AJAX, this shouldn't be anything new.</p>
-        <div>
-          jQuery's implementation: <pre>$.ajax</pre>
-        </div>
-        <div>
-          ToolKit's implementation: <pre>ToolKit.AJAX</pre>
-        </div>
+        <p>If you wish to make use of AJAX calls, you can simply do so via 
+				using ToolKit's Service method.</p>
+				<div>
+					<!-- 
+					<pre><code>
+					ToolKit.Service({
+					  url: window.location.href,
+					  method: "GET",
+					  success: function (data) {
+					    console.log(data); 
+					  } 
+					});
+					</code></pre> -->
+				</div>
       </div>
+			<div id="Query" class="doc">
+				<h3>Query</h3>
+				<hr/>
+				If you want to query an array of objects, you can simply use ToolKit-JS to do this, 
+				via using the Query method, the main purpose of this is to implement a more 'minimal' 
+				implementation of OQS(Object Query Script). This can be used as a load balancing tool, 
+				or possibly a disaster recovery implementation for when you're having one of those bad 
+				server days! 
+				<diV>
+					<!--
+					<pre><code>
+					var queryString = "age GTE 20";
+					var queryCols = ["age", "name"];
+					var queryData = [{"age" : "30", "name" :"Jack"}, {"age" : "20", "name" :"Jay"}, {"age" : "12", "name" :"Stacy"}];
+					</code></pre>
+					-->
+				</div>
+			</div>
     </div>
   </body>
 </html>
