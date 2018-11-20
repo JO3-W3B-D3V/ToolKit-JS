@@ -174,7 +174,7 @@ var ToolKit = function () {
     var updateSubset = function () {
       subset = [];
       var start = index * limit || 0;
-      var end = start + 5;
+      var end = start + limit;
 
       for (var i = start; i < end; i++) {
         if (array[i] != null) {
@@ -189,7 +189,7 @@ var ToolKit = function () {
 
     // Increment by 'x' amount.
     me.next = function () {
-      if (index < array.length) index++;
+      if (index < ((array.length / limit) - 1)) index++;
       return updateSubset();
     };
 
