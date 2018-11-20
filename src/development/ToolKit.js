@@ -1,7 +1,7 @@
 /**
  * @author    Joseph Evans <joeevs196@gmail.com>
  * @since     14/11/2018
- * @version   3.0.5
+ * @version   3.0.6
  * @file      The purpose of this framework is simple, to implement a small framework, including
  *            a few neat features, a few of the standard features includes the following:
  *
@@ -35,6 +35,11 @@
  *            React, etc.
  *
  * @todo      Implement some test(s) through the use of Mocha.
+ *
+ * @todo      Test the newly added features, i.e. the templateURL property 
+ *            on the Component class.
+ *
+ * @todo      Add more error recovery methods, i.e. the implementation of AJAX.  
  *
  * @copyright (c) 2018 copyright holder all Rights Reserved.
  *            Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -389,6 +394,7 @@ var ToolKit = function () {
     var clone;
     var lifecycle;
     var args = props || {};
+		var loading = false;
 
 
 
@@ -400,7 +406,13 @@ var ToolKit = function () {
     // Set up all of the component's properties.
     me.name = args.name; // String
     me.root = args.root; // Element
-    me.template = args.template; // String
+		
+		if (args.template != null) {
+			me.template = args.template; // String
+		} else if (args.templateURL != null) {
+			loading = true; // Wait for the template to load.
+			me.template = null;
+		}
     me.onStateChange = args.onStateChange; // Function
     me.onRender = args.onRender; // Function
     me.lifeSpan = args.lifeSpan || privateProps.lifeSpan; // Int
@@ -422,8 +434,22 @@ var ToolKit = function () {
         clone = JSON.parse(JSON.stringify(me.state));
       }
     }
+		
+		
+		
+		// Load the template in via ajax.
+		if (args.templateURL != null && loading === true) {
+			publicProps.Service({
+				method: 'GET', 
+				url: args.templateURL,
+				success: function (data) {
+					me.template = data;
+				}
+			});
+		}
 
 
+		
     // Now to start the lifecycle.
     self.startLifeCycle = function () {
       if (lifecycle != null) {
@@ -431,6 +457,11 @@ var ToolKit = function () {
       }
 
       lifecycle = setInterval(function () {
+				// Make sure that the template is not null.
+				if (me.template == null) { 
+					return; 
+				}
+				
         var stateString = JSON.stringify(me.state);
         var cloneString = JSON.stringify(clone);
 
@@ -522,7 +553,7 @@ var ToolKit = function () {
 
 
     // Force a minimal expectation.
-    if (props.name == null || props.root == null || props.template == null || props.state == null) {
+    if (props.name == null || props.root == null || (props.template == null || props.templateURL == null) || props.state == null) {
       return publicProps.log('Invalid properties for a component.');
     }
 
@@ -533,17 +564,25 @@ var ToolKit = function () {
       return publicProps.log('Invalid properties for a component.');
     } else if (!props.root instanceof Element) {
       return publicProps.log('Invalid properties for a component.');
-    } else if (typeof props.template !== 'string') {
+    } else if (typeof props.template !== 'string' && props.template != null) {
       return publicProps.log('Invalid properties for a component.');
     } else if (typeof props.state !== 'object') {
       return publicProps.log('Invalid properties for a component.');
-    }
+    } else if (typeof props.templateURL !== 'string' && props.templateURL != null) {
+			return publicProps.log('Invalid properties for a component.');
+		}
 
 
     // Now that it's safe to use the above properties, copy them over.
     args.name = props.name;
     args.root = props.root;
-    args.template = props.template;
+		if (props.template != null) {
+			args.template = props.template;
+			arg.templateURL = null;
+		} else if (props.templateURL != null) {
+			args.templateURL = props.templateURL;
+			args.template = null;
+		} 
     args.state = props.state;
 
 
