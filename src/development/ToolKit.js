@@ -160,6 +160,7 @@ var ToolKit = function () {
       } catch (Error) {
         // No worries?
       }
+      updateSubset();
     };
 
     // Simply update the array property.
